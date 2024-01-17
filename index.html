@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Stores</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .store-button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Guru Gedara</h1>
+    
+    <button class="store-button" onclick="navigateToStore('gurugedara_s1')">Store 1</button>
+    <button class="store-button" onclick="navigateToStore('gurugedara_s2')">Store 2</button>
+
+    <script>
+        function navigateToStore(storeName) {
+            // You can replace the "#" with the actual paths to your store pages
+            window.location.href = storeName;
+        }
+    </script>
+</body>
+</html>
