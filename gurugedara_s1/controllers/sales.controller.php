@@ -97,6 +97,8 @@ class ControllerSales{
 						   "discountPercentage"=>$_POST["newDiscountPercentage"],
 						   "netItemsPrice"=>$_POST["netItemPrice"],
 						   "totalPrice"=>$_POST["saleTotal"],
+						//    "cashin"=>$_POST["newCashValue"],
+						//    "balance"=>$_POST["newCashChange"],
 						   "paymentMethod"=>$_POST["listPaymentMethod"]);
 
 			$answer = ModelSales::mdlAddSale($table, $data);

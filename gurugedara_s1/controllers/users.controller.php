@@ -114,7 +114,14 @@ class ControllerUsers{
 
 					$folder = "views/img/users/".$_POST["newUser"];
 
-					mkdir($folder, 0755);
+					echo "<script>console.log('new user name = ".$_POST["newUser"]."');</script>";
+
+					if (mkdir($folder, 0755)) {
+						echo "<script>console.log('User Directory created successfully');</script>";
+					} else {
+						echo "<script>console.log('Failed to create user directory');</script>";
+					}
+					
 
 					/*=============================================
 					PHP functions depending on the image

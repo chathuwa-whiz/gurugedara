@@ -31,6 +31,8 @@ $discount = number_format($answerSale["discount"],2);
 $discountPercentage = number_format($answerSale["discountPercentage"],2);
 $totalPrice = number_format($answerSale["totalPrice"],2);
 $netPrice = number_format($answerSale["netItemsPrice"],2);
+$cashin = number_format($answerSale["cashin"],2);
+$balance = number_format($answerSale["balance"],2);  
 
 //TRAEMOS LA INFORMACIÓN DEL Customer
 
@@ -55,7 +57,7 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
 
-$pdf->AddPage('P', 'A7');
+$pdf->AddPage('P', 'A6');
 
 //---------------------------------------------------------
 
@@ -85,9 +87,9 @@ if ($productHeight > $maxProductHeightPerPage) {
 
 // Header: Guru Gedara Publication and Bookshop
 $blockHeader = <<<HTML
-    <table style="font-size:10px; text-align:center; width:100%;">
+    <table style="font-size:12px; text-align:center; width:100%; ">
         <tr>
-            <td>Guru Gedara Publication and Bookshop</td>
+            <td><b>Guru Gedara Publication and Bookshop</b></td>
         </tr>
     </table>
 HTML;
@@ -121,7 +123,7 @@ $pdf->writeHTML($blockAddress, false, false, false, false, '');
 $blockBranch = <<<HTML
     <table style="font-size:10px; text-align:center; width:100%;">
         <tr>
-            <td>Main Branch Polgahawela<br></td>
+            <td>Main Branch Polgahawela</td>
         </tr>
     </table>
 HTML;
@@ -130,9 +132,9 @@ $pdf->writeHTML($blockBranch, false, false, false, false, '');
 
 // Contact: 070 3 273 747 / 077 2 213793
 $blockContact = <<<HTML
-    <table style="font-size:10px; text-align:center; width:100%;">
+    <table style="font-size:8px; text-align:center; width:100%;">
         <tr>
-            <td>070 3 273 747 / 077 2 213793 <br></td>
+            <td>070 3 273 747 / 077 2 213793 <br>Date: $saledate <br></td>
         </tr>
     </table>
 HTML;
@@ -141,7 +143,7 @@ $pdf->writeHTML($blockContact, false, false, false, false, '');
 
 // Customer Names: Replace with actual variables
 $blockCustomerNames = <<<HTML
-    <table style="font-size:8px;  width:100%;">
+    <table style="font-size:8px; text-align:center;  width:100%;">
         <tr>
             <td>Customer name: {$answerCustomer['name']} &nbsp;</td>
             <td>Seller: {$answerSeller['name']}<br></td>
@@ -153,9 +155,9 @@ $pdf->writeHTML($blockCustomerNames, false, false, false, false, '');
 
 // Item details header
 $blockItemHeader = <<<HTML
-    <table style="font-size:8px; width:100%;">
+    <table style="font-size:10px; width:100%;">
         <tr>
-            <td>Itemcode</td>
+            <td>Itmcode</td>
             <td>Qty</td>
             <td>Unit Price</td>
             <td>Net Amount</td>
@@ -165,63 +167,76 @@ HTML;
 
 $pdf->writeHTML($blockItemHeader, false, false, false, false, '');
 
+// Initialize an empty variable to store item details
+$itemDetailsBlock = '';
+
 // Loop through products and display details
 foreach ($products as $key => $item) {
     // Check if the keys exist before accessing them
-    $itemcode = isset($item['itemcode']) ? $item['itemcode'] : '';
-    $qty = isset($item['qty']) ? $item['qty'] : '';
+    $itemcode = isset($item['id']) ? $item['id'] : '';
+    $qty = isset($item['quantity']) ? $item['quantity'] : '';
 
     $unitValue = number_format($item["price"], 2);
-    $totalPrice = number_format($item["totalPrice"], 2);
+    $unitTotalValue = number_format($item["totalPrice"], 2);
 
-    $blockItemDetails = <<<HTML
-        <table style="font-size:8px; width:100%;">
+    $itemDetailsBlock .= <<<HTML
+        <table style="font-size:10px; width:100%; border-collapse: collapse; margin-bottom: 5px;">
             <tr>
-                <td>{$itemcode}</td>
-                <td>{$qty}</td>
-                <td>{$unitValue}</td>
-                <td>{$totalPrice}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$itemcode}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$qty}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$unitValue}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$unitTotalValue}</td>
             </tr>
         </table>
 HTML;
-
-    $pdf->writeHTML($blockItemDetails, false, false, false, false, '');
 }
-
-// Additional details from the database (replace with actual database values)
-$totalAmount = "100.00";
-$discount = "10.00";
-$netAmount = "90.00";
-$cash = "50.00";
-$balance = "40.00";
 
 // Display total amount, discount, net amount, cash, balance
 $blockAmountDetails = <<<HTML
-    <table style="font-size:8px; text-align:right; width:100%;">
+    <table style="font-size:12px; text-align:center; width:100%; margin-top: 20px; border-collapse: collapse; border-spacing: 0;">
         <tr>
-            <td>Total Amount: {$totalAmount}</td>
-            <td>Discount: {$discount}</td>
+            <td colspan="2" style="font-weight: bold; padding-bottom: 10px;"></td>
         </tr>
         <tr>
-            <td>Net Amount: {$netAmount}</td>
-            <td>Cash: {$cash}</td>
+            <td style="padding: 8px;">Item Value:</td>
+            <td style="padding: 8px;">{$netPrice}</td>
         </tr>
         <tr>
-            <td>Balance: {$balance}</td>
+            <td style="padding: 8px;">Discount:</td>
+            <td style="padding: 8px;">{$discount} ({$discountPercentage}%)</td>
         </tr>
+        <tr>
+            <td style="padding: 8px;"><b>Total Amount: </b></td>
+            <td style="padding: 8px;"><b>{$totalPrice}</b></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="height: 15px;"></td> 
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><b>Cash: </b></td>
+            <td style="padding: 8px;"><b>{$cashin}</b></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Balance:</td>
+            <td style="padding: 8px;">{$balance}</td>
+        </tr><hr>
     </table>
 HTML;
 
-$pdf->writeHTML($blockAmountDetails, false, false, false, false, '');
+
+// 
+$combinedBlock = $itemDetailsBlock . $blockAmountDetails;
+
+// Write the combined block to the PDF
+$pdf->writeHTML($combinedBlock, false, false, false, false, '');
 
 // Footer: Thank you
 
-
 // Footer: Thank you come again!
 $blockFooter = <<<EOF
-<table style="font-size:8px; text-align:center; width:100%;">
+<table style="font-size:10px; text-align:center; width:100%;">
     <tr>
-        <td>Thank you come again!</td>
+        <td><br><br><br><br><br><b>Thank you come again!</b></td>	
     </tr>
 </table>
 EOF;

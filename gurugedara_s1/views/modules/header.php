@@ -54,7 +54,7 @@
 							
 							}else{
 
-								echo '<img class="user-image" src="views/img/users/default/anonymous.png">';
+								echo '<img class="user-image" src="views/img/users/default/prfplaceholder.png">';
 							}
 
 						?>

@@ -80,7 +80,7 @@
 
                     }else{
 
-                      echo '<td><img src="views/img/users/default/anonymous.png" class="img-thumbnail" width="40px"></td>';
+                      echo '<td><img src="views/img/users/default/prfplaceholder.png" class="img-thumbnail" width="40px"></td>';
                     
                     }
 
@@ -209,9 +209,9 @@
                 <select class="form-control input-lg" name="newProfile">
 
                   <option value="">Select Level</option>
-                  <option value="administrator">Administrator</option>
-                  <option value="special">Special</option>
-                  <option value="seller">Seller</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Special">Special</option>
+                  <option value="Seller">Seller</option>
 
                 </select>
 
@@ -347,9 +347,9 @@
                 <select class="form-control input-lg" name="EditProfile">
 
                   <option value="" id="EditProfile"></option>
-                  <option value="administrator">Administrator</option>
-                  <option value="special">Special</option>
-                  <option value="seller">Seller</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Special">Special</option>
+                  <option value="Seller">Seller</option>
 
                 </select>
 
@@ -366,7 +366,7 @@
 
               <p class="help-block">Maximum size 2Mb</p>
 
-              <img class="thumbnail preview" src="views/img/users/default/anonymous.png" alt="" width="100px">
+              <img class="thumbnail preview" src="views/img/users/default/prfplaceholder.png" alt="" width="100px">
 
               <input type="hidden" name="currentPicture" id="currentPicture">
 
@@ -398,7 +398,7 @@
     </div>
 
   </div>
-	<!-- Log on to codeastro.com for more projects! -->
+
 </div>
 
 <?php
