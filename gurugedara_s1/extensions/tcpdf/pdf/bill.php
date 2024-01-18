@@ -132,9 +132,9 @@ $pdf->writeHTML($blockBranch, false, false, false, false, '');
 
 // Contact: 070 3 273 747 / 077 2 213793
 $blockContact = <<<HTML
-    <table style="font-size:10px; text-align:center; width:100%;">
+    <table style="font-size:8px; text-align:center; width:100%;">
         <tr>
-            <td>070 3 273 747 / 077 2 213793 <br></td>
+            <td>070 3 273 747 / 077 2 213793 <br>Date: $saledate <br></td>
         </tr>
     </table>
 HTML;
@@ -143,10 +143,10 @@ $pdf->writeHTML($blockContact, false, false, false, false, '');
 
 // Customer Names: Replace with actual variables
 $blockCustomerNames = <<<HTML
-    <table style="font-size:8px;  width:100%;">
+    <table style="font-size:8px; text-align:center;  width:100%;">
         <tr>
             <td>Customer name: {$answerCustomer['name']} &nbsp;</td>
-            <td>Seller: {$answerSeller['name']}<br><br></td>
+            <td>Seller: {$answerSeller['name']}<br></td>
         </tr>
     </table>
 HTML;
@@ -193,31 +193,38 @@ HTML;
 
 // Display total amount, discount, net amount, cash, balance
 $blockAmountDetails = <<<HTML
-    <table style="font-size:10px; text-align:right; width:100%; margin-top: 10px;"><hr>
+    <table style="font-size:12px; text-align:center; width:100%; margin-top: 20px; border-collapse: collapse; border-spacing: 0;">
         <tr>
-            <td style="width:30%;">Item Value:</td>
-            <td style="width:50%;">{$netPrice}</td>
+            <td colspan="2" style="font-weight: bold; padding-bottom: 10px;"></td>
         </tr>
         <tr>
-            <td style="width:30%;">Discount:</td>
-            <td style="width:50%;">{$discount} ({$discountPercentage}%)</td>
+            <td style="padding: 8px;">Item Value:</td>
+            <td style="padding: 8px;">{$netPrice}</td>
         </tr>
         <tr>
-            <td style="width:30%;">Total Amount:</td>
-            <td style="width:50%;">{$totalPrice}</td>
-        </tr><br><br><br><hr>
-        <tr>
-            <td style="width:30%;">Cash:</td>
-            <td style="width:50%;">{$cashin}</td>
+            <td style="padding: 8px;">Discount:</td>
+            <td style="padding: 8px;">{$discount} ({$discountPercentage}%)</td>
         </tr>
         <tr>
-            <td style="width:30%;">Balance:</td>
-            <td style="width:50%;">{$balance}</td>
+            <td style="padding: 8px;"><b>Total Amount: </b></td>
+            <td style="padding: 8px;"><b>{$totalPrice}</b></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="height: 15px;"></td> 
+        </tr>
+        <tr>
+            <td style="padding: 8px;"><b>Cash: </b></td>
+            <td style="padding: 8px;"><b>{$cashin}</b></td>
+        </tr>
+        <tr>
+            <td style="padding: 8px;">Balance:</td>
+            <td style="padding: 8px;">{$balance}</td>
         </tr><hr>
     </table>
 HTML;
 
-// Combine the item details and additional details blocks
+
+// 
 $combinedBlock = $itemDetailsBlock . $blockAmountDetails;
 
 // Write the combined block to the PDF
@@ -227,9 +234,9 @@ $pdf->writeHTML($combinedBlock, false, false, false, false, '');
 
 // Footer: Thank you come again!
 $blockFooter = <<<EOF
-<table style="font-size:9px; text-align:center; width:100%;">
+<table style="font-size:10px; text-align:center; width:100%;">
     <tr>
-        <td><br><br>Thank you come again!</td>
+        <td><br><br><br><br><br><b>Thank you come again!</b></td>	
     </tr>
 </table>
 EOF;
