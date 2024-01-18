@@ -202,8 +202,8 @@ $blockAmountDetails = <<<HTML
             <td style="padding: 8px;">{$netPrice}</td>
         </tr>
         <tr>
-            <td style="padding: 8px;">Discount:</td>
-            <td style="padding: 8px;">{$discount} ({$discountPercentage}%)</td>
+            <td style="padding: 8px;"><b>Discount: </b></td>
+            <td style="padding: 8px;"><b>{$discount} ({$discountPercentage}%)</b></td>
         </tr>
         <tr>
             <td style="padding: 8px;"><b>Total Amount: </b></td>
@@ -213,8 +213,8 @@ $blockAmountDetails = <<<HTML
             <td colspan="2" style="height: 15px;"></td> 
         </tr>
         <tr>
-            <td style="padding: 8px;"><b>Cash: </b></td>
-            <td style="padding: 8px;"><b>{$cashin}</b></td>
+            <td style="padding: 8px;">Cash: </td>
+            <td style="padding: 8px;">{$cashin}</td>
         </tr>
         <tr>
             <td style="padding: 8px;">Balance:</td>
