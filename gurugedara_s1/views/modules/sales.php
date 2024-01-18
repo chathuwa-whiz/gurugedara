@@ -83,8 +83,12 @@ if($xml){
              <th>Customer</th>
              <th>Seller</th>
              <th>Payment Method</th>
-             <th>Net Cost</th>
+             <th>Net Items Cost</th>
+             <th>Discount</th>
              <th>Total Cost</th>
+             <th>Discount Percentage</th>
+             <th>Cashin</th>
+             <th>Balance</th>
              <th>Date</th>
              <th>Actions</th>
 
@@ -133,9 +137,17 @@ if($xml){
 
                   <td>'.$value["paymentMethod"].'</td>
 
-                  <td>$ '.number_format($value["netPrice"],2).'</td>
+                  <td>Rs. '.number_format($value["netItemsPrice"],2).'</td>
+                  
+                  <td>Rs. '.number_format($value["discount"],2).'</td>
 
-                  <td>$ '.number_format($value["totalPrice"],2).'</td>
+                  <td>Rs. '.number_format($value["totalPrice"],2).'</td>
+
+                  <td>'.number_format($value["discountPercentage"],2).'%</td>
+
+                  <td>Rs. '.number_format($value["cashin"],2).'</td>
+
+                  <td>Rs. '.number_format($value["balance"],2).'</td>
 
                   <td>'.$value["saledate"].'</td>
 
