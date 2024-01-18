@@ -57,7 +57,7 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 $pdf->setPrintHeader(false);
 $pdf->setPrintFooter(false);
 
-$pdf->AddPage('P', 'A7');
+$pdf->AddPage('P', 'A6');
 
 //---------------------------------------------------------
 
