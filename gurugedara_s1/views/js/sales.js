@@ -591,7 +591,7 @@ $("#newPaymentMethod").change(function(){
 
 			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
 
-			 		'<input type="text" class="form-control" id="newCashValue" placeholder="000000" required>'+
+			 		'<input type="text" class="form-control" name="newCashValue" id="newCashValue" placeholder="000000" required>'+
 
 			 	'</div>'+
 
@@ -603,7 +603,7 @@ $("#newPaymentMethod").change(function(){
 
 			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
 
-			 		'<input type="text" class="form-control" id="newCashChange" placeholder="000000" readonly required>'+
+			 		'<input type="text" class="form-control" name="newCashChange" id="newCashChange" placeholder="000000" readonly required>'+
 
 			 	'</div>'+
 
