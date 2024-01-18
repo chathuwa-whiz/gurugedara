@@ -42,7 +42,7 @@
 
       <?php
 
-        if($_SESSION["profile"] =="Administrator"){
+        if($_SESSION["profile"] =="Administrator") {
 
           include "reports/sales-graph.php";
 

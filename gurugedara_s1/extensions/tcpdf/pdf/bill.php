@@ -87,7 +87,7 @@ if ($productHeight > $maxProductHeightPerPage) {
 
 // Header: Guru Gedara Publication and Bookshop
 $blockHeader = <<<HTML
-    <table style="font-size:12px; text-align:center; width:100%;">
+    <table style="font-size:12px; text-align:center; width:100%; ">
         <tr>
             <td><b>Guru Gedara Publication and Bookshop</b></td>
         </tr>

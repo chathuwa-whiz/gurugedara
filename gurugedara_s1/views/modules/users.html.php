@@ -225,9 +225,9 @@
                 <select class="form-control input-lg" name="newProfile">
 
                   <option value="">Select profile</option>
-                  <option value="administrator">Administrator</option>
-                  <option value="special">Special</option>
-                  <option value="seller">Seller</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Special">Special</option>
+                  <option value="Seller">Seller</option>
 
                 </select>
 
