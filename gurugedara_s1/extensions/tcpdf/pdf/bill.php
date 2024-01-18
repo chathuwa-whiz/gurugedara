@@ -87,7 +87,7 @@ if ($productHeight > $maxProductHeightPerPage) {
 
 // Header: Guru Gedara Publication and Bookshop
 $blockHeader = <<<HTML
-    <table style="font-size:9px; text-align:center; width:100%;">
+    <table style="font-size:12px; text-align:center; width:100%;">
         <tr>
             <td><b>Guru Gedara Publication and Bookshop</b></td>
         </tr>
@@ -110,7 +110,7 @@ $pdf->writeHTML($blockLogo, false, false, false, false, ''); */
 
 // Address: Negombo rd, Dambadeniya
 $blockAddress = <<<HTML
-    <table style="font-size:8px; text-align:center; width:100%;">
+    <table style="font-size:10px; text-align:center; width:100%;">
         <tr>
             <td>Negombo rd, Dambadeniya</td>
         </tr>
@@ -121,7 +121,7 @@ $pdf->writeHTML($blockAddress, false, false, false, false, '');
 
 // Main Branch Polgahawela
 $blockBranch = <<<HTML
-    <table style="font-size:8px; text-align:center; width:100%;">
+    <table style="font-size:10px; text-align:center; width:100%;">
         <tr>
             <td>Main Branch Polgahawela</td>
         </tr>
@@ -132,7 +132,7 @@ $pdf->writeHTML($blockBranch, false, false, false, false, '');
 
 // Contact: 070 3 273 747 / 077 2 213793
 $blockContact = <<<HTML
-    <table style="font-size:8px; text-align:center; width:100%;">
+    <table style="font-size:10px; text-align:center; width:100%;">
         <tr>
             <td>070 3 273 747 / 077 2 213793 <br></td>
         </tr>
@@ -146,7 +146,7 @@ $blockCustomerNames = <<<HTML
     <table style="font-size:8px;  width:100%;">
         <tr>
             <td>Customer name: {$answerCustomer['name']} &nbsp;</td>
-            <td>Seller: {$answerSeller['name']}<br></td>
+            <td>Seller: {$answerSeller['name']}<br><br></td>
         </tr>
     </table>
 HTML;
@@ -155,7 +155,7 @@ $pdf->writeHTML($blockCustomerNames, false, false, false, false, '');
 
 // Item details header
 $blockItemHeader = <<<HTML
-    <table style="font-size:8px; width:100%;">
+    <table style="font-size:10px; width:100%;">
         <tr>
             <td>Itmcode</td>
             <td>Qty</td>
@@ -166,9 +166,6 @@ $blockItemHeader = <<<HTML
 HTML;
 
 $pdf->writeHTML($blockItemHeader, false, false, false, false, '');
-
-// Initialize an empty variable to store item details
-$itemDetailsBlock = '';
 
 // Initialize an empty variable to store item details
 $itemDetailsBlock = '';
@@ -196,28 +193,27 @@ HTML;
 
 // Display total amount, discount, net amount, cash, balance
 $blockAmountDetails = <<<HTML
-    <table style="font-size:10px; text-align:right; width:100%; margin-top: 10px;">
+    <table style="font-size:10px; text-align:right; width:100%; margin-top: 10px;"><hr>
         <tr>
-            <td style="width:50%;">Item Value:</td>
+            <td style="width:30%;">>Item Value:</td>
             <td style="width:50%;">{$netPrice}</td>
         </tr>
         <tr>
-            <td style="width:50%;">Discount:</td>
+            <td style="width:30%;">Discount:</td>
             <td style="width:50%;">{$discount} ({$discountPercentage}%)</td>
         </tr>
         <tr>
-            <td style="width:50%;">Total Amount:</td>
+            <td style="width:30%;">Total Amount:</td>
             <td style="width:50%;">{$totalPrice}</td>
-        </tr>
-        <br>
+        </tr><br><br><br><hr>
         <tr>
-            <td style="width:50%;">Cash:</td>
+            <td style="width:30%;">Cash:</td>
             <td style="width:50%;">{$cashin}</td>
         </tr>
         <tr>
-            <td style="width:50%;">Balance:</td>
+            <td style="width:30%;">Balance:</td>
             <td style="width:50%;">{$balance}</td>
-        </tr>
+        </tr><hr>
     </table>
 HTML;
 
