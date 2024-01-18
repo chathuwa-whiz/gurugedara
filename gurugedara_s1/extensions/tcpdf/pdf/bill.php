@@ -31,6 +31,8 @@ $discount = number_format($answerSale["discount"],2);
 $discountPercentage = number_format($answerSale["discountPercentage"],2);
 $totalPrice = number_format($answerSale["totalPrice"],2);
 $netPrice = number_format($answerSale["netItemsPrice"],2);
+$cashin = number_format($_COOKIE["cash"]);
+$change = number_format($_COOKIE["change"]);  
 
 //TRAEMOS LA INFORMACIÓN DEL Customer
 
@@ -85,9 +87,9 @@ if ($productHeight > $maxProductHeightPerPage) {
 
 // Header: Guru Gedara Publication and Bookshop
 $blockHeader = <<<HTML
-    <table style="font-size:10px; text-align:center; width:100%;">
+    <table style="font-size:9px; text-align:center; width:100%;">
         <tr>
-            <td>Guru Gedara Publication and Bookshop</td>
+            <td><b>Guru Gedara Publication and Bookshop</b></td>
         </tr>
     </table>
 HTML;
@@ -108,7 +110,7 @@ $pdf->writeHTML($blockLogo, false, false, false, false, ''); */
 
 // Address: Negombo rd, Dambadeniya
 $blockAddress = <<<HTML
-    <table style="font-size:10px; text-align:center; width:100%;">
+    <table style="font-size:8px; text-align:center; width:100%;">
         <tr>
             <td>Negombo rd, Dambadeniya</td>
         </tr>
@@ -119,9 +121,9 @@ $pdf->writeHTML($blockAddress, false, false, false, false, '');
 
 // Main Branch Polgahawela
 $blockBranch = <<<HTML
-    <table style="font-size:10px; text-align:center; width:100%;">
+    <table style="font-size:8px; text-align:center; width:100%;">
         <tr>
-            <td>Main Branch Polgahawela<br></td>
+            <td>Main Branch Polgahawela</td>
         </tr>
     </table>
 HTML;
@@ -130,7 +132,7 @@ $pdf->writeHTML($blockBranch, false, false, false, false, '');
 
 // Contact: 070 3 273 747 / 077 2 213793
 $blockContact = <<<HTML
-    <table style="font-size:10px; text-align:center; width:100%;">
+    <table style="font-size:8px; text-align:center; width:100%;">
         <tr>
             <td>070 3 273 747 / 077 2 213793 <br></td>
         </tr>
@@ -155,7 +157,7 @@ $pdf->writeHTML($blockCustomerNames, false, false, false, false, '');
 $blockItemHeader = <<<HTML
     <table style="font-size:8px; width:100%;">
         <tr>
-            <td>Itemcode</td>
+            <td>Itmcode</td>
             <td>Qty</td>
             <td>Unit Price</td>
             <td>Net Amount</td>
@@ -164,6 +166,9 @@ $blockItemHeader = <<<HTML
 HTML;
 
 $pdf->writeHTML($blockItemHeader, false, false, false, false, '');
+
+// Initialize an empty variable to store item details
+$itemDetailsBlock = '';
 
 // Loop through products and display details
 foreach ($products as $key => $item) {
@@ -174,54 +179,64 @@ foreach ($products as $key => $item) {
     $unitValue = number_format($item["price"], 2);
     $totalPrice = number_format($item["totalPrice"], 2);
 
-    $blockItemDetails = <<<HTML
-        <table style="font-size:8px; width:100%;">
+    $itemDetailsBlock .= <<<HTML
+        <table style="font-size:10px; width:100%; border-collapse: collapse; margin-bottom: 5px;">
             <tr>
-                <td>{$itemcode}</td>
-                <td>{$qty}</td>
-                <td>{$unitValue}</td>
-                <td>{$totalPrice}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$itemcode}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$qty}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$unitValue}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$totalPrice}</td>
             </tr>
         </table>
 HTML;
-
-    $pdf->writeHTML($blockItemDetails, false, false, false, false, '');
 }
 
 // Additional details from the database (replace with actual database values)
-$totalAmount = "100.00";
-$discount = "10.00";
-$netAmount = "90.00";
-$cash = "50.00";
-$balance = "40.00";
+$totalAmount = "";
+$discount = "";
+$netAmount = "";
+$cash = "";
+$balance = "";
 
-// Display total amount, discount, net amount, cash, balance
+// Display total amount, discount, net amount, cashin, change
 $blockAmountDetails = <<<HTML
-    <table style="font-size:8px; text-align:right; width:100%;">
+    <table style="font-size:10px; text-align:right; width:100%; margin-top: 10px;">
         <tr>
-            <td>Total Amount: {$totalAmount}</td>
-            <td>Discount: {$discount}</td>
+            <td style="width:100%;"><br><br>Total Amount:$totalPrice</td>
+            <td style="width:50%;">{$totalAmount}</td>
         </tr>
         <tr>
-            <td>Net Amount: {$netAmount}</td>
-            <td>Cash: {$cash}</td>
+            <td style="width:50%;">Discount:</td>
+            <td style="width:50%;">{$discount}</td>
         </tr>
         <tr>
-            <td>Balance: {$balance}</td>
+            <td style="width:50%;">Net Amount:</td>
+            <td style="width:50%;">{$netAmount}</td>
+        </tr>
+        <tr>
+            <td style="width:50%;">Cash:</td>
+            <td style="width:50%;">{$cashin}</td>
+        </tr>
+        <tr>
+            <td style="width:50%;">Balance:</td>
+            <td style="width:50%;">{$change}</td>
         </tr>
     </table>
 HTML;
 
-$pdf->writeHTML($blockAmountDetails, false, false, false, false, '');
+// Combine the item details and additional details blocks
+$combinedBlock = $itemDetailsBlock . $blockAmountDetails;
+
+// Write the combined block to the PDF
+$pdf->writeHTML($combinedBlock, false, false, false, false, '');
 
 // Footer: Thank you
 
-
 // Footer: Thank you come again!
 $blockFooter = <<<EOF
-<table style="font-size:8px; text-align:center; width:100%;">
+<table style="font-size:9px; text-align:center; width:100%;">
     <tr>
-        <td>Thank you come again!</td>
+        <td><br><br>Thank you come again!</td>
     </tr>
 </table>
 EOF;

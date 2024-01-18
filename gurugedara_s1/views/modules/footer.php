@@ -1,7 +1,7 @@
 <footer class="main-footer">
 
-	<strong>&copy; 2024 - Point of Sale System in PHP AVC EDITS</strong>
+	<center> <strong> &copy; 2024 - POWERED BY AVC EDITS</strong>
 	
-	All rights reserved
+	All rights reserved</center>
 
 </footer>
