@@ -103,7 +103,7 @@ $blockLogo = <<<HTML
         <tr>
             <td style="text-align:center;"><img src="$logoPath" alt="Logo" style="width:100px; height:100px;"></td>
         </tr>
-    </tabl>
+    </table>
 HTML;
 
 $pdf->writeHTML($blockLogo, false, false, false, false, ''); */
