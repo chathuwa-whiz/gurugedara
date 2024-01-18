@@ -43,7 +43,7 @@ class ModelSales{
 	/* --LOG ON TO codeastro.com FOR MORE PROJECTS-- */
 	static public function mdlAddSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, idSeller, products, totalPrice, netItemsPrice, discount, discountPercentage, paymentMethod) VALUES (:code, :idCustomer, :idSeller, :products, :totalPrice, :netItemsPrice, :discount, :discountPercentage, :paymentMethod)");
+		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, idSeller, products, totalPrice, netItemsPrice, discount, discountPercentage, paymentMethod, cashin, balance) VALUES (:code, :idCustomer, :idSeller, :products, :totalPrice, :netItemsPrice, :discount, :discountPercentage, :paymentMethod, :cashin, :balance)");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
@@ -54,6 +54,10 @@ class ModelSales{
 		$stmt->bindParam(":netItemsPrice", $data["netItemsPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
+		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
+		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
+		$stmt->bindParam(":cashin", $_POST["newCashValue"], PDO::PARAM_STR);
+		$stmt->bindParam(":balance", $_POST["newCashChange"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

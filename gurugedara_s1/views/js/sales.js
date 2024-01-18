@@ -653,11 +653,9 @@ $(".saleForm").on("change", "input#newCashValue", function(){
 	
 	var cash = $(this).val();
 	console.log("cash", cash);
-	document.cookie = "cash = "+cash;
 
 	var change =  Number(cash) - Number($('#saleTotal').val());
 	console.log("change", change);
-	document.cookie = "change = "+change;
 
 	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
 

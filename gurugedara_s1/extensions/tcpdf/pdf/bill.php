@@ -31,8 +31,8 @@ $discount = number_format($answerSale["discount"],2);
 $discountPercentage = number_format($answerSale["discountPercentage"],2);
 $totalPrice = number_format($answerSale["totalPrice"],2);
 $netPrice = number_format($answerSale["netItemsPrice"],2);
-$cashin = number_format($_COOKIE["cash"]);
-$change = number_format($_COOKIE["change"]);  
+$cashin = number_format($answerSale["cashin"],2);
+$balance = number_format($answerSale["balance"],2);  
 
 //TRAEMOS LA INFORMACIÓN DEL Customer
 
@@ -170,14 +170,17 @@ $pdf->writeHTML($blockItemHeader, false, false, false, false, '');
 // Initialize an empty variable to store item details
 $itemDetailsBlock = '';
 
+// Initialize an empty variable to store item details
+$itemDetailsBlock = '';
+
 // Loop through products and display details
 foreach ($products as $key => $item) {
     // Check if the keys exist before accessing them
-    $itemcode = isset($item['itemcode']) ? $item['itemcode'] : '';
-    $qty = isset($item['qty']) ? $item['qty'] : '';
+    $itemcode = isset($item['id']) ? $item['id'] : '';
+    $qty = isset($item['quantity']) ? $item['quantity'] : '';
 
     $unitValue = number_format($item["price"], 2);
-    $totalPrice = number_format($item["totalPrice"], 2);
+    $unitTotalValue = number_format($item["totalPrice"], 2);
 
     $itemDetailsBlock .= <<<HTML
         <table style="font-size:10px; width:100%; border-collapse: collapse; margin-bottom: 5px;">
@@ -185,41 +188,35 @@ foreach ($products as $key => $item) {
                 <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$itemcode}</td>
                 <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$qty}</td>
                 <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$unitValue}</td>
-                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$totalPrice}</td>
+                <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$unitTotalValue}</td>
             </tr>
         </table>
 HTML;
 }
 
-// Additional details from the database (replace with actual database values)
-$totalAmount = "";
-$discount = "";
-$netAmount = "";
-$cash = "";
-$balance = "";
-
-// Display total amount, discount, net amount, cashin, change
+// Display total amount, discount, net amount, cash, balance
 $blockAmountDetails = <<<HTML
     <table style="font-size:10px; text-align:right; width:100%; margin-top: 10px;">
         <tr>
-            <td style="width:100%;"><br><br>Total Amount:$totalPrice</td>
-            <td style="width:50%;">{$totalAmount}</td>
+            <td style="width:50%;">Item Value:</td>
+            <td style="width:50%;">{$netPrice}</td>
         </tr>
         <tr>
             <td style="width:50%;">Discount:</td>
-            <td style="width:50%;">{$discount}</td>
+            <td style="width:50%;">{$discount} ({$discountPercentage}%)</td>
         </tr>
         <tr>
-            <td style="width:50%;">Net Amount:</td>
-            <td style="width:50%;">{$netAmount}</td>
+            <td style="width:50%;">Total Amount:</td>
+            <td style="width:50%;">{$totalPrice}</td>
         </tr>
+        <br>
         <tr>
             <td style="width:50%;">Cash:</td>
             <td style="width:50%;">{$cashin}</td>
         </tr>
         <tr>
             <td style="width:50%;">Balance:</td>
-            <td style="width:50%;">{$change}</td>
+            <td style="width:50%;">{$balance}</td>
         </tr>
     </table>
 HTML;
