@@ -195,7 +195,7 @@ HTML;
 $blockAmountDetails = <<<HTML
     <table style="font-size:10px; text-align:right; width:100%; margin-top: 10px;"><hr>
         <tr>
-            <td style="width:30%;">>Item Value:</td>
+            <td style="width:30%;">Item Value:</td>
             <td style="width:50%;">{$netPrice}</td>
         </tr>
         <tr>
