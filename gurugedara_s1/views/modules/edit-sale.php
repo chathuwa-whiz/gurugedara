@@ -151,7 +151,7 @@
 
                           $answer = ControllerProducts::ctrShowproducts($item, $valueProduct, $order);
                           // echo "<pre>";
-                          //   print_r($answer); // or var_dump($answer);
+                          //   print_r($sale); // or var_dump($answer);
                           // echo "</pre>";
 
                           $lastStock = $answer["stock"] + $value["quantity"];
@@ -202,7 +202,7 @@
 
 	                                <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
 
-	                                <input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'.$answer["discountPrice"].'" name="newProductDiscount" value="'.$answer["discountPrice"].'" readonly>
+	                                <input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'.$answer["discountPrice"] * $value["quantity"].'" name="newProductDiscount" value="'.$answer["discountPrice"] * $value["quantity"].'" readonly>
 
 	                              </div>
 
@@ -252,7 +252,7 @@
 
                                 <div class="input-group">
                                   
-                                  <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" placeholder="0" min="0" readonly required>
+                                  <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" value="<?php echo $sale["discount"] ?>" placeholder="0" min="0" readonly required>
 
                                   <input type="hidden" name="newDiscountPrice" id="newDiscountPrice" required>
 
@@ -269,7 +269,7 @@
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" class="form-control" name="netItemPrice" id="netItemPrice" placeholder="00000" totalSale="" readonly required>
+                                  <input type="number" class="form-control" name="netItemPrice" id="netItemPrice" value="<?php echo $sale["netItemsPrice"] ?>" placeholder="00000" totalSale="" readonly required>
 
                                   <input type="hidden" name="netSaleItem" id="netSaleItem" required>
 
@@ -283,7 +283,7 @@
                                   
                                   <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
                                   
-                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" readonly required>
+                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" value="<?php echo $sale["totalPrice"] ?>" placeholder="00000" totalSale="" readonly required>
 
                                   <input type="hidden" name="saleTotal" id="saleTotal" required>
 
@@ -299,7 +299,7 @@
 
                                 <div class="input-group">
                             
-                                  <input type="number" class="form-control" name="newDiscountPercentage" id="newDiscountPercentage" placeholder="0" min="0" readonly required>
+                                  <input type="number" class="form-control" name="newDiscountPercentage" id="newDiscountPercentage" value="<?php echo $sale["discountPercentage"] ?>" placeholder="0" min="0" readonly required>
 
                                   <input type="hidden" name="newDiscountPercentagePrice" id="newDiscountPercentagePrice" required>
 
