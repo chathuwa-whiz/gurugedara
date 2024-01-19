@@ -8,7 +8,7 @@
  * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
  */
 
-
+console.log("this is chart.js");
 (function(){
 
 	"use strict";

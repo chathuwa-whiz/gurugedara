@@ -110,7 +110,7 @@ $(".salesTable tbody").on("click", "button.addProductSale", function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductPrice" realPrice="'+itemPrice+'" name="newProductPrice" value="'+itemPrice+'" readonly required>'+
 	 
@@ -124,7 +124,7 @@ $(".salesTable tbody").on("click", "button.addProductSale", function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'+itemDiscount+'" name="newProductDiscount" value="'+itemDiscount+'" readonly>'+
 	 
@@ -311,7 +311,7 @@ $(".btnAddProduct").click(function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductPrice" realPrice="" name="newProductPrice" readonly required>'+
 	 
@@ -325,7 +325,7 @@ $(".btnAddProduct").click(function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'+itemDiscount+'" name="newProductDiscount" value="'+itemDiscount+'" readonly>'+
 	 
@@ -591,7 +591,7 @@ $("#newPaymentMethod").change(function(){
 
 			 	'<div class="input-group">'+ 
 
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
+			 		'<span class="input-group-addon">Rs.</span>'+ 
 
 			 		'<input type="text" class="form-control" name="newCashValue" id="newCashValue" placeholder="000000" required>'+
 
@@ -603,7 +603,7 @@ $("#newPaymentMethod").change(function(){
 
 			 	'<div class="input-group">'+
 
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+			 		'<span class="input-group-addon">Rs.</span>'+
 
 			 		'<input type="text" class="form-control" name="newCashChange" id="newCashChange" placeholder="000000" readonly required>'+
 

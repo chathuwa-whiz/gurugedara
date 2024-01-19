@@ -186,7 +186,7 @@
 
 	                              <div class="input-group">
 
-	                                <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+	                                <span class="input-group-addon">Rs.</span>
 
 	                                <input type="text" class="form-control newProductPrice" realPrice="'.$answer["sellingPrice"].'" name="newProductPrice" value="'.$answer["sellingPrice"].'" readonly required>
 
@@ -200,7 +200,7 @@
 
 	                              <div class="input-group">
 
-	                                <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+	                                <span class="input-group-addon">Rs.</span>
 
 	                                <input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'.$answer["discountPrice"] * $value["quantity"].'" name="newProductDiscount" value="'.$answer["discountPrice"] * $value["quantity"].'" readonly>
 
@@ -251,14 +251,14 @@
                               <td style="width: 30%">
 
                                 <div class="input-group">
+
+                                  <span class="input-group-addon">Rs.</span>
                                   
                                   <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" value="<?php echo $sale["discount"] ?>" placeholder="0" min="0" readonly required>
 
                                   <input type="hidden" name="newDiscountPrice" id="newDiscountPrice" required>
 
                                   <input type="hidden" name="newDiscountNetPrice" id="newDiscountNetPrice" required>
-                                  
-                                  <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
                                 </div>
                               </td>
@@ -267,7 +267,7 @@
 
                                 <div class="input-group">
                                   
-                                  <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                                  <span class="input-group-addon">Rs.</span>
                                   
                                   <input type="number" class="form-control" name="netItemPrice" id="netItemPrice" value="<?php echo $sale["netItemsPrice"] ?>" placeholder="00000" totalSale="" readonly required>
 
@@ -281,7 +281,7 @@
 
                                 <div class="input-group">
                                   
-                                  <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                                  <span class="input-group-addon">Rs.</span>
                                   
                                   <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" value="<?php echo $sale["totalPrice"] ?>" placeholder="00000" totalSale="" readonly required>
 
