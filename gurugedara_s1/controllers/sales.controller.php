@@ -351,8 +351,6 @@ class ControllerSales{
 						   "idCustomer"=>$_POST["selectCustomer"],
 						   "code"=>$_POST["newSale"],
 						   "products"=>$_POST["productsList"],
-						//    "tax"=>$_POST["newTaxPrice"],
-						//    "netPrice"=>$_POST["newNetPrice"],
 						   "discount"=>$_POST["newDiscountSale"],
 						   "discountPercentage"=>$_POST["newDiscountPercentage"],
 						   "netItemsPrice"=>$_POST["netSaleItem"],
