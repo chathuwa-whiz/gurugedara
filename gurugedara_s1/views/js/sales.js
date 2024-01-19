@@ -27,6 +27,7 @@ ADDING PRODUCTS TO THE SALE FROM THE TABLE
 
 var itemDiscount = 0;
 var itemPrice = 0;
+var barcode = [];
 
 $(".salesTable tbody").on("click", "button.addProductSale", function(){
 
@@ -55,6 +56,7 @@ $(".salesTable tbody").on("click", "button.addProductSale", function(){
           	var stock = answer["stock"];
           	itemPrice = answer["sellingPrice"];
 			itemDiscount = answer["discountPrice"];
+			barcode.push(answer["code"]);
 
 
           	/*=============================================
@@ -108,7 +110,7 @@ $(".salesTable tbody").on("click", "button.addProductSale", function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductPrice" realPrice="'+itemPrice+'" name="newProductPrice" value="'+itemPrice+'" readonly required>'+
 	 
@@ -122,7 +124,7 @@ $(".salesTable tbody").on("click", "button.addProductSale", function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'+itemDiscount+'" name="newProductDiscount" value="'+itemDiscount+'" readonly>'+
 	 
@@ -309,7 +311,7 @@ $(".btnAddProduct").click(function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductPrice" realPrice="" name="newProductPrice" readonly required>'+
 	 
@@ -323,7 +325,7 @@ $(".btnAddProduct").click(function(){
 
 	            '<div class="input-group">'+
 
-	              '<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+	              '<span class="input-group-addon">Rs.</span>'+
 	                 
 	              '<input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'+itemDiscount+'" name="newProductDiscount" value="'+itemDiscount+'" readonly>'+
 	 
@@ -589,7 +591,7 @@ $("#newPaymentMethod").change(function(){
 
 			 	'<div class="input-group">'+ 
 
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+ 
+			 		'<span class="input-group-addon">Rs.</span>'+ 
 
 			 		'<input type="text" class="form-control" name="newCashValue" id="newCashValue" placeholder="000000" required>'+
 
@@ -601,7 +603,7 @@ $("#newPaymentMethod").change(function(){
 
 			 	'<div class="input-group">'+
 
-			 		'<span class="input-group-addon"><i class="ion ion-social-usd"></i></span>'+
+			 		'<span class="input-group-addon">Rs.</span>'+
 
 			 		'<input type="text" class="form-control" name="newCashChange" id="newCashChange" placeholder="000000" readonly required>'+
 
@@ -693,16 +695,18 @@ function listProducts(){
 
 	for(var i = 0; i < description.length; i++){
 
-		productsList.push({ "id" : $(description[i]).attr("idProduct"), 
-							  "description" : $(description[i]).val(),
-							  "quantity" : $(quantity[i]).val(),
-							  "stock" : $(quantity[i]).attr("newStock"),
-							  "price" : $(price[i]).attr("realPrice"),
-							  "totalPrice" : $(price[i]).val()})
+		productsList.push({ "id" : $(description[i]).attr("idProduct"),
+							"code" : barcode[i],
+							"description" : $(description[i]).val(),
+							"quantity" : $(quantity[i]).val(),
+							"stock" : $(quantity[i]).attr("newStock"),
+							"price" : $(price[i]).attr("realPrice"),
+							"totalPrice" : $(price[i]).val()});
 	}
 
 	$("#productsList").val(JSON.stringify(productsList));
 	
+	// print the selected products
 	console.log("productsList", productsList);
 
 }

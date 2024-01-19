@@ -54,7 +54,7 @@
 
                     $customers = ControllerCustomers::ctrShowCustomers($itemCustomers, $valueCustomers);
 
-                    $taxPercentage = round($sale["tax"] * 100 / $sale["netPrice"]);
+                    $taxPercentage = round($sale["discountPercentage"]);
                 ?>
 
                     <!--=====================================
@@ -150,42 +150,65 @@
                           $order = "id";
 
                           $answer = ControllerProducts::ctrShowproducts($item, $valueProduct, $order);
+                          // echo "<pre>";
+                          //   print_r($sale); // or var_dump($answer);
+                          // echo "</pre>";
 
                           $lastStock = $answer["stock"] + $value["quantity"];
                           
                           echo '<div class="row" style="padding:5px 15px">
-                    
-                                <div class="col-xs-6" style="padding-right:0px">
-                    
-                                  <div class="input-group">
-                        
-                                    <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct="'.$value["id"].'"><i class="fa fa-trash"></i></button></span>
 
-                                    <input type="text" class="form-control newProductDescription" idProduct="'.$value["id"].'" name="addProduct" value="'.$value["description"].'" readonly required>
+			                        <!-- Product description -->
 
-                                  </div>
+	                            <div class="col-xs-5" style="padding-right:0px">
 
-                                </div>
+	                              <div class="input-group">
 
-                                <div class="col-xs-3">
-                      
-                                  <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" stock="'.$lastStock.'" newStock="'.$value["stock"].'" required>
+	                                <span class="input-group-addon"><button type="button" class="btn btn-danger btn-xs removeProduct" idProduct="'.$value["id"].'"><i class="fa fa-times"></i></button></span>
 
-                                </div>
+	                                <input type="text" class="form-control newProductDescription" idProduct="'.$value["id"].'" name="addProductSale" value="'.$value["description"].'" readonly required>
 
-                                <div class="col-xs-3 enterPrice" style="padding-left:0px">
+	                              </div>
 
-                                  <div class="input-group">
+	                            </div>
 
-                                    <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                           
-                                    <input type="text" class="form-control newProductPrice" realPrice="'.$answer["sellingPrice"].'" name="newProductPrice" value="'.$value["totalPrice"].'" readonly required>
-           
-                                  </div>
-                       
-                                </div>
+	                            <!-- Product quantity -->
 
-                              </div>';
+	                            <div class="col-xs-2">
+
+	                              <input type="number" class="form-control newProductQuantity" name="newProductQuantity" min="1" value="'.$value["quantity"].'" stock="'.$lastStock.'" newStock="'.$value["stock"].'" required>
+
+	                            </div>
+
+	                            <!-- product price -->
+
+	                            <div class="col-xs-3 enterPrice" style="padding-left:0px">
+
+	                              <div class="input-group">
+
+	                                <span class="input-group-addon">Rs.</span>
+
+	                                <input type="text" class="form-control newProductPrice" realPrice="'.$answer["sellingPrice"].'" name="newProductPrice" value="'.$answer["sellingPrice"].'" readonly required>
+
+	                              </div>
+
+	                            </div>
+
+			                        <!-- product discount -->
+
+	                            <div class="col-xs-2 enterPrice" style="padding-left:0px">
+
+	                              <div class="input-group">
+
+	                                <span class="input-group-addon">Rs.</span>
+
+	                                <input type="text" class="form-control newProductDiscount" id="newProductDiscount" realPrice="'.$answer["discountPrice"] * $value["quantity"].'" name="newProductDiscount" value="'.$answer["discountPrice"] * $value["quantity"].'" readonly>
+
+	                              </div>
+
+	                            </div>
+
+	                          </div>';
                         }
 
 
@@ -209,51 +232,85 @@
                         TAXES AND TOTAL INPUT
                       ======================================-->
 
-                      <div class="col-xs-8 pull-right">
+                      <div class="col-xs-12">
 
                         <table class="table">
                           
                           <thead>
                             
-                            <th>Taxes</th>
+                            <th>Total Discount</th>                            
+                            <th>Net Items Price</th>
                             <th>Total</th>
 
                           </thead>
 
-
                           <tbody>
                             
                             <tr>
-                              
-                              <td style="width: 50%">
+                              <!-- total discount -->
+                              <td style="width: 30%">
+
+                                <div class="input-group">
+
+                                  <span class="input-group-addon">Rs.</span>
+                                  
+                                  <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" value="<?php echo $sale["discount"] ?>" placeholder="0" min="0" readonly required>
+
+                                  <input type="hidden" name="newDiscountPrice" id="newDiscountPrice" required>
+
+                                  <input type="hidden" name="newDiscountNetPrice" id="newDiscountNetPrice" required>
+
+                                </div>
+                              </td>
+                              <!-- net items price -->
+                              <td style="width: 40%">
 
                                 <div class="input-group">
                                   
-                                  <input type="number" class="form-control" name="newDiscountPercentage" id="newDiscountPercentage" value="<?php echo $taxPercentage; ?>" min="0" required>
-
-                                  <input type="hidden" name="newTaxPrice" id="newTaxPrice" value="<?php echo $sale["tax"]; ?>" required>
-
-                                  <input type="hidden" name="newNetPrice" id="newNetPrice" value="<?php echo $sale["netPrice"]; ?>" required>
+                                  <span class="input-group-addon">Rs.</span>
                                   
+                                  <input type="number" class="form-control" name="netItemPrice" id="netItemPrice" value="<?php echo $sale["netItemsPrice"] ?>" placeholder="00000" totalSale="" readonly required>
+
+                                  <input type="hidden" name="netSaleItem" id="netSaleItem" required>
+
+                                </div>
+
+                              </td>
+                              <!-- total -->
+                              <td style="width: 30%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">Rs.</span>
+                                  
+                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" value="<?php echo $sale["totalPrice"] ?>" placeholder="00000" totalSale="" readonly required>
+
+                                  <input type="hidden" name="saleTotal" id="saleTotal" required>
+
+                                </div>
+
+                              </td>
+
+                            </tr>
+                             <!-- SECOND ROW -->
+                            <tr>
+                              <!-- total discount as percentage -->
+                              <td style="width: 30%">
+
+                                <div class="input-group">
+                            
+                                  <input type="number" class="form-control" name="newDiscountPercentage" id="newDiscountPercentage" value="<?php echo $sale["discountPercentage"] ?>" placeholder="0" min="0" readonly required>
+
+                                  <input type="hidden" name="newDiscountPercentagePrice" id="newDiscountPercentagePrice" required>
+
+                                  <input type="hidden" name="newDiscountPercentageNetPrice" id="newDiscountPercentageNetPrice" required>
+                            
                                   <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
                                 </div>
-                              </td>
-								<!-- Log on to codeastro.com for more projects! -->
-                              <td style="width: 50%">
-
-                                <div class="input-group">
-                                  
-                                  <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
-                                  
-                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="<?php echo $sale["netPrice"]; ?>" value="<?php echo $sale["totalPrice"]; ?>" readonly required>
-
-                                  <input type="hidden" name="saleTotal" id="saleTotal" value="<?php echo $sale["totalPrice"]; ?>" required>
-
-                                </div>
 
                               </td>
-
+                              
                             </tr>
 
                           </tbody>

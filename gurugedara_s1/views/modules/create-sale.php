@@ -125,7 +125,7 @@ if($_SESSION["profile"] == "Special"){
                       <div class="input-group">
                         
                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
-                        <select class="form-control" name="selectCustomer" id="selectCustomer" required>
+                        <select class="form-control" name="selectCustomer" id="selectCustomer" >
                           
                             <option value="">Select Customer</option>
 
@@ -196,23 +196,24 @@ if($_SESSION["profile"] == "Special"){
                               <td style="width: 30%">
 
                                 <div class="input-group">
+
+                                  <span class="input-group-addon">Rs.</span>
                                   
                                   <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" placeholder="0" min="0" readonly required>
 
                                   <input type="hidden" name="newDiscountPrice" id="newDiscountPrice" required>
 
                                   <input type="hidden" name="newDiscountNetPrice" id="newDiscountNetPrice" required>
-                                  
-                                  <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
                                 </div>
+
                               </td>
                               <!-- net items price -->
                               <td style="width: 40%">
 
                                 <div class="input-group">
                                   
-                                  <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                                  <span class="input-group-addon">Rs.</span>
                                   
                                   <input type="number" class="form-control" name="netItemPrice" id="netItemPrice" placeholder="00000" totalSale="" readonly required>
 
@@ -226,7 +227,7 @@ if($_SESSION["profile"] == "Special"){
 
                                 <div class="input-group">
                                   
-                                  <span class="input-group-addon"><i class="ion ion-social-usd"></i></span>
+                                  <span class="input-group-addon">Rs.</span>
                                   
                                   <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" readonly required>
 

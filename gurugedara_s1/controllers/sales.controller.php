@@ -97,8 +97,6 @@ class ControllerSales{
 						   "discountPercentage"=>$_POST["newDiscountPercentage"],
 						   "netItemsPrice"=>$_POST["netItemPrice"],
 						   "totalPrice"=>$_POST["saleTotal"],
-						//    "cashin"=>$_POST["newCashValue"],
-						//    "balance"=>$_POST["newCashChange"],
 						   "paymentMethod"=>$_POST["listPaymentMethod"]);
 
 			$answer = ModelSales::mdlAddSale($table, $data);
@@ -351,8 +349,6 @@ class ControllerSales{
 						   "idCustomer"=>$_POST["selectCustomer"],
 						   "code"=>$_POST["newSale"],
 						   "products"=>$_POST["productsList"],
-						//    "tax"=>$_POST["newTaxPrice"],
-						//    "netPrice"=>$_POST["newNetPrice"],
 						   "discount"=>$_POST["newDiscountSale"],
 						   "discountPercentage"=>$_POST["newDiscountPercentage"],
 						   "netItemsPrice"=>$_POST["netSaleItem"],
@@ -589,16 +585,16 @@ class ControllerSales{
 			echo utf8_decode("<table border='0'> 
 
 					<tr> 
-					<td style='font-weight:bold; border:1px solid #eee;'>CÓDIGO</td> 
-					<td style='font-weight:bold; border:1px solid #eee;'>customer</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Sale ID</td> 
+					<td style='font-weight:bold; border:1px solid #eee;'>Customer</td>
 					<td style='font-weight:bold; border:1px solid #eee;'>Seller</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>quantity</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>products</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>tax</td>
-					<td style='font-weight:bold; border:1px solid #eee;'>netPrice</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>TOTAL</td>		
-					<td style='font-weight:bold; border:1px solid #eee;'>METODO DE PAGO</td	
-					<td style='font-weight:bold; border:1px solid #eee;'>FECHA</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>Quantity</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Products</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Dicsount</td>
+					<td style='font-weight:bold; border:1px solid #eee;'>Net Items Price</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>Total Price</td>		
+					<td style='font-weight:bold; border:1px solid #eee;'>Payment Method</td	
+					<td style='font-weight:bold; border:1px solid #eee;'>Date</td>		
 					</tr>");
 
 			foreach ($sales as $row => $item){
@@ -628,8 +624,8 @@ class ControllerSales{
 		 		}
 
 		 		echo utf8_decode("</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["tax"],2)."</td>
-					<td style='border:1px solid #eee;'>$ ".number_format($item["netPrice"],2)."</td>	
+					<td style='border:1px solid #eee;'>$ ".number_format($item["discount"],2)."</td>
+					<td style='border:1px solid #eee;'>$ ".number_format($item["netItemsPrice"],2)."</td>	
 					<td style='border:1px solid #eee;'>$ ".number_format($item["totalPrice"],2)."</td>
 					<td style='border:1px solid #eee;'>".$item["paymentMethod"]."</td>
 					<td style='border:1px solid #eee;'>".substr($item["saledate"],0,10)."</td>		

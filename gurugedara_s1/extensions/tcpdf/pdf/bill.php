@@ -119,7 +119,7 @@ HTML;
 
 $pdf->writeHTML($blockAddress, false, false, false, false, '');
 
-// Main Branch Polgahawela
+// Main Branch wela
 $blockBranch = <<<HTML
     <table style="font-size:10px; text-align:center; width:100%;">
         <tr>
@@ -157,10 +157,10 @@ $pdf->writeHTML($blockCustomerNames, false, false, false, false, '');
 $blockItemHeader = <<<HTML
     <table style="font-size:10px; width:100%;">
         <tr>
-            <td>Itmcode</td>
+            <td>Code</td>
             <td>Qty</td>
             <td>Unit Price</td>
-            <td>Net Amount</td>
+            <td>Amount</td>
         </tr>
     </table>
 HTML;
@@ -173,7 +173,7 @@ $itemDetailsBlock = '';
 // Loop through products and display details
 foreach ($products as $key => $item) {
     // Check if the keys exist before accessing them
-    $itemcode = isset($item['id']) ? $item['id'] : '';
+    $itemcode = isset($item['code']) ? $item['code'] : '';
     $qty = isset($item['quantity']) ? $item['quantity'] : '';
 
     $unitValue = number_format($item["price"], 2);
@@ -198,12 +198,12 @@ $blockAmountDetails = <<<HTML
             <td colspan="2" style="font-weight: bold; padding-bottom: 10px;"></td>
         </tr>
         <tr>
-            <td style="padding: 8px;">Item Value:</td>
+            <td style="padding: 8px;">Items Value:</td>
             <td style="padding: 8px;">{$netPrice}</td>
         </tr>
         <tr>
-            <td style="padding: 8px;">Discount:</td>
-            <td style="padding: 8px;">{$discount} ({$discountPercentage}%)</td>
+            <td style="padding: 8px;"><b>Discount: </b></td>
+            <td style="padding: 8px;"><b>{$discount} ({$discountPercentage}%)</b></td>
         </tr>
         <tr>
             <td style="padding: 8px;"><b>Total Amount: </b></td>
@@ -213,8 +213,8 @@ $blockAmountDetails = <<<HTML
             <td colspan="2" style="height: 15px;"></td> 
         </tr>
         <tr>
-            <td style="padding: 8px;"><b>Cash: </b></td>
-            <td style="padding: 8px;"><b>{$cashin}</b></td>
+            <td style="padding: 8px;">Cash: </td>
+            <td style="padding: 8px;">{$cashin}</td>
         </tr>
         <tr>
             <td style="padding: 8px;">Balance:</td>

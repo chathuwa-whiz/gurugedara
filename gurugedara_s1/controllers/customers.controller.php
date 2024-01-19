@@ -12,9 +12,7 @@ class ControllerCustomers{
 
 			if(preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["newCustomer"]) &&
 			   preg_match('/^[0-9]+$/', $_POST["newIdDocument"]) &&
-			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["newEmail"]) && 
-			   preg_match('/^[()\-0-9 ]+$/', $_POST["newPhone"]) && 
-			   preg_match('/^[#\.\-a-zA-Z0-9 ]+$/', $_POST["newAddress"])){
+			   preg_match('/^[()\-0-9 ]+$/', $_POST["newPhone"])){
 
 			   	$table = "customers";
 

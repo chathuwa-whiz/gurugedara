@@ -56,7 +56,7 @@ SALES GRAPH
 		
  		<i class="fa fa-th"></i>
 
-  		<h3 class="box-title">Sales Graph</h3>
+  		<h3 class="box-title"></h3>
 
 	</div>
 
@@ -109,7 +109,7 @@ SALES GRAPH
     pointStrokeColors: ['#efefef'],
     gridLineColor    : '#efefef',
     gridTextFamily   : 'Open Sans',
-    preUnits         : '$',
+    preUnits         : 'Rs',
     gridTextSize     : 10
   });
 
