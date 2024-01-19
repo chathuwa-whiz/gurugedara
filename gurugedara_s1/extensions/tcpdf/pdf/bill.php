@@ -119,7 +119,7 @@ HTML;
 
 $pdf->writeHTML($blockAddress, false, false, false, false, '');
 
-// Main Branch Polgahawela
+// Main Branch wela
 $blockBranch = <<<HTML
     <table style="font-size:10px; text-align:center; width:100%;">
         <tr>

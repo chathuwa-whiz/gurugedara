@@ -111,8 +111,10 @@ $("editDiscountPrice, #newDiscountPrice").change(function(){
 PERCENTAGE CHANGE
 =============================================*/
 $(".newPercentage").change(function(){
+	console.log("unchecked");
 
 	if($(".percentage").prop("checked")){
+		console.log("checked");
 
 		var valuePercentage = $(this).val();
 		

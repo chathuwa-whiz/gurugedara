@@ -1,37 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Stores</title>
+    <title>Gurugedara Stores</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
+            background-image: url('https://images.unsplash.com/flagged/photo-1551373916-bdaddbf4f881?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #000000;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .store-button {
-            padding: 10px;
+            padding: 15px 30px;
             margin: 10px;
-            font-size: 16px;
+            font-size: 1.2em;
             cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #FA2716;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .store-button:hover {
+            background-color: #BB1933;
+            color: #FEF31B;
+            box-shadow: 0 8px 12px rgba(20, 8, 5, 0.2);
         }
     </style>
-</head><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<body bgcolor="#FA9216">
-    <h1>WELCOME TO GURUGEDARA </h1>
-    
-    <button class="store-button" onclick="navigateToStore('gurugedara_s1')" style="background-color: #FA2716; color: #140104; padding: 10px; transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; box-shadow: 5 8 10px rgba(0, 0, 0, 0.1);" onmouseover="this.style.backgroundColor='#BB1933'; this.style.color='#FEF31B'; this.style.boxShadow='10 15 15px rgba(20, 8, 5, 10.2)';" onmouseout="this.style.backgroundColor='#FA2716'; this.style.color='#140104'; this.style.boxShadow='5 2 10px rgba(5, 5, 6, 2.1)';">DAMBADENIYA SHOP</button>
+</head>
 
+<body>
+    <h1>Welcome to Gurugedara</h1>
 
-    <button class="store-button" onclick="navigateToStore('gurugedara_s2')" style="background-color: #FA2716; color: #140104; padding: 10px; transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; box-shadow: 5 8 10px rgba(0, 0, 0, 0.1);" onmouseover="this.style.backgroundColor='#BB1933'; this.style.color='#FEF31B'; this.style.boxShadow='10 15 15px rgba(20, 8, 5, 10.2)';" onmouseout="this.style.backgroundColor='#FA2716'; this.style.color='#140104'; this.style.boxShadow='5 2 10px rgba(5, 5, 6, 2.1)';">POLGAHAWELA SHOP</button>
-    
+    <button class="store-button" onclick="navigateToStore('gurugedara_s1')">Dambadeniya Shop</button>
+
+    <button class="store-button" onclick="navigateToStore('gurugedara_s2')">Polgahawela Shop</button>
 
     <script>
         function navigateToStore(storeName) {
-            // You can replace the "#" with the actual paths to your store pages
             window.location.href = storeName;
         }
     </script>
 </body>
+
 </html>
