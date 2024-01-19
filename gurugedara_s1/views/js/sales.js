@@ -27,6 +27,7 @@ ADDING PRODUCTS TO THE SALE FROM THE TABLE
 
 var itemDiscount = 0;
 var itemPrice = 0;
+var barcode = [];
 
 $(".salesTable tbody").on("click", "button.addProductSale", function(){
 
@@ -55,6 +56,7 @@ $(".salesTable tbody").on("click", "button.addProductSale", function(){
           	var stock = answer["stock"];
           	itemPrice = answer["sellingPrice"];
 			itemDiscount = answer["discountPrice"];
+			barcode.push(answer["code"]);
 
 
           	/*=============================================
@@ -694,15 +696,17 @@ function listProducts(){
 	for(var i = 0; i < description.length; i++){
 
 		productsList.push({ "id" : $(description[i]).attr("idProduct"),
-							  "description" : $(description[i]).val(),
-							  "quantity" : $(quantity[i]).val(),
-							  "stock" : $(quantity[i]).attr("newStock"),
-							  "price" : $(price[i]).attr("realPrice"),
-							  "totalPrice" : $(price[i]).val()})
+							"code" : barcode[i],
+							"description" : $(description[i]).val(),
+							"quantity" : $(quantity[i]).val(),
+							"stock" : $(quantity[i]).attr("newStock"),
+							"price" : $(price[i]).attr("realPrice"),
+							"totalPrice" : $(price[i]).val()});
 	}
 
 	$("#productsList").val(JSON.stringify(productsList));
 	
+	// print the selected products
 	console.log("productsList", productsList);
 
 }
