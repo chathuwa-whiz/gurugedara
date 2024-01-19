@@ -25,7 +25,7 @@ $totalProducts = count($products);
     
     <div class="inner">
       
-      <h3>$<?php echo number_format($sales["total"],2); ?></h3>
+      <h3>Rs.<?php echo number_format($sales["total"],2); ?></h3>
 
       <p>Sales</p>
     
