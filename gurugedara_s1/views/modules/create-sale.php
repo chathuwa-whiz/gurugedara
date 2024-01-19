@@ -196,16 +196,17 @@ if($_SESSION["profile"] == "Special"){
                               <td style="width: 30%">
 
                                 <div class="input-group">
+
+                                  <span class="input-group-addon"><i class="fa-solid fa-rupee-sign"></i></span>
                                   
                                   <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" placeholder="0" min="0" readonly required>
 
                                   <input type="hidden" name="newDiscountPrice" id="newDiscountPrice" required>
 
                                   <input type="hidden" name="newDiscountNetPrice" id="newDiscountNetPrice" required>
-                                  
-                                  <span class="input-group-addon"><i class="fa fa-percent"></i></span>
 
                                 </div>
+
                               </td>
                               <!-- net items price -->
                               <td style="width: 40%">

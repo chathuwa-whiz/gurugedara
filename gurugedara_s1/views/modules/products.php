@@ -464,7 +464,7 @@ EDIT PRODUCT
                     </label>
 
                   </div>
-                
+
                 </div>
 
                 <!-- INPUT PERCENTAGE -->
