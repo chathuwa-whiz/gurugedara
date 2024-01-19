@@ -693,7 +693,7 @@ function listProducts(){
 
 	for(var i = 0; i < description.length; i++){
 
-		productsList.push({ "id" : $(description[i]).attr("idProduct"), 
+		productsList.push({ "id" : $(description[i]).attr("idProduct"),
 							  "description" : $(description[i]).val(),
 							  "quantity" : $(quantity[i]).val(),
 							  "stock" : $(quantity[i]).attr("newStock"),
