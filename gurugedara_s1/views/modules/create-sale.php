@@ -182,18 +182,58 @@ if($_SESSION["profile"] == "Special"){
                           
                           <thead>
 
-                            <th>Total Discount</th>                            
-                            <th>Net Items Price</th>
-                            <th>Total</th>
+                            <th><h2><b>Net Items Price</b></h1></th>
+                            <th style="color:green;"><h1><b>Total</b></h1></th>
 
                           </thead>
 
 
                           <tbody>
-                            
+                            <tr>
+                              <!-- net items price -->
+                              <td style="width: 50%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">Rs.</span>
+                                  
+                                  <input type="number" style="height:60px; font-weight:bold; font-size:60px;" class="form-control" name="netItemPrice" id="netItemPrice" placeholder="00000" totalSale="" readonly required>
+
+                                  <input type="hidden" style="height:60px; font-weight:bold; font-size:60px;" name="netSaleItem" id="netSaleItem" required>
+
+                                </div>
+
+                              </td>
+                              <!-- total -->
+                              <td style="width: 50%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">Rs.</span>
+                                  
+                                  <input type="number" style="color:green; height:60px; font-weight:bold; font-size:60px;" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" readonly required>
+
+                                  <input type="hidden" style="color:green; height:60px; font-weight:bold; font-size:60px;" name="saleTotal" id="saleTotal" required>
+
+                                </div>
+
+                              </td>
+
+                            </tr>
+
+                            <!-- SECOND ROW -->
+                            <tr>
+                              <td><div style="height:10px"></div></td>
+                            </tr>
+                            <tr>
+                              <th>Discount</th>
+                              <th>Percentage</th>
+                            </tr>
+
+                            <!-- THIRD ROW -->
                             <tr>
                               <!-- total discount -->
-                              <td style="width: 30%">
+                              <td style="width: 50%">
 
                                 <div class="input-group">
 
@@ -208,40 +248,8 @@ if($_SESSION["profile"] == "Special"){
                                 </div>
 
                               </td>
-                              <!-- net items price -->
-                              <td style="width: 40%">
-
-                                <div class="input-group">
-                                  
-                                  <span class="input-group-addon">Rs.</span>
-                                  
-                                  <input type="number" class="form-control" name="netItemPrice" id="netItemPrice" placeholder="00000" totalSale="" readonly required>
-
-                                  <input type="hidden" name="netSaleItem" id="netSaleItem" required>
-
-                                </div>
-
-                              </td>
-                              <!-- total -->
-                              <td style="width: 30%">
-
-                                <div class="input-group">
-                                  
-                                  <span class="input-group-addon">Rs.</span>
-                                  
-                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" placeholder="00000" totalSale="" readonly required>
-
-                                  <input type="hidden" name="saleTotal" id="saleTotal" required>
-
-                                </div>
-
-                              </td>
-
-                            </tr>
-                             <!-- SECOND ROW -->
-                            <tr>
                               <!-- total discount as percentage -->
-                              <td style="width: 30%">
+                              <td style="width: 50%">
 
                                 <div class="input-group">
                             
@@ -274,10 +282,17 @@ if($_SESSION["profile"] == "Special"){
                     <!--=====================================
                       PAYMENT METHOD
                       ======================================-->
-                       <center><div><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cashin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; changes</b> </div></center> 
+                      <!-- <center>
+                        <div id="cashinchanges" style="display:none;">
+                          <b>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cashin 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; changes
+                          </b>
+                        </div>
+                      </center> -->
                     <div class="form-group row">
                       
-                      <div class="col-xs-6" style="padding-right: 0">
+                      <div class="col-xs-12" style="padding-right: 0">
 
                         <div class="input-group">
                         
@@ -294,11 +309,13 @@ if($_SESSION["profile"] == "Special"){
                        
                       </div>
                                 
-                      <div class="paymentMethodBoxes"></div>
+                      <!-- <div class="paymentMethodBoxes"></div> -->
 
                       <input type="hidden" name="listPaymentMethod" id="listPaymentMethod" required>
 
                     </div>
+
+                    <div class="paymentMethodBoxes"></div>
 
                     <br>
                     
@@ -347,8 +364,11 @@ if($_SESSION["profile"] == "Special"){
                      <th>Image</th>
                      <th style="width:30px">Code</th>
                      <th>Description</th>
+                     <th>Price</th>
                      <th>Stock</th>
                      <th>Actions</th>
+                     <th>Discount</th>
+                     <!-- <th>No.of sales</th> -->
 
                    </tr> 
 

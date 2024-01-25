@@ -580,36 +580,47 @@ $("#newPaymentMethod").change(function(){
 	var method = $(this).val();
 
 	if(method == "cash"){
+		$(this).parent().parent().parent().parent().children("center").children("#cashinchanges").show(); // show cashin and balance text
 
 		$(this).parent().parent().removeClass("col-xs-6");
 
 		$(this).parent().parent().addClass("col-xs-4");
 
-		$(this).parent().parent().parent().children(".paymentMethodBoxes").html(
+		$(this).parent().parent().parent().parent().children(".paymentMethodBoxes").html(
 
-			 '<div class="col-xs-4">'+ 
+			'<tr><td>'+
+
+			 '<div class="col-xs-12" style="padding-left:0px">'+ 
 
 			 	'<div class="input-group">'+ 
 
 			 		'<span class="input-group-addon">Rs.</span>'+ 
 
-			 		'<input type="text" class="form-control" name="newCashValue" id="newCashValue" placeholder="000000" required>'+
+			 		'<input type="text" style="height:60px; font-weight:bold; font-size:60px;" class="form-control" name="newCashValue" id="newCashValue" placeholder="Enter Cash in" required>'+
 
 			 	'</div>'+
 
 			 '</div>'+
 
-			 '<div class="col-xs-4" id="getCashChange" style="padding-left:0px">'+
+			'</td></tr>'+
+
+			'<tr><td><div style="height:10px;"></div></td></tr>'+
+
+			'<tr><td>'+
+
+			 '<div class="col-xs-12" id="getCashChange" style="padding-left:0px">'+
 
 			 	'<div class="input-group">'+
 
 			 		'<span class="input-group-addon">Rs.</span>'+
 
-			 		'<input type="text" class="form-control" name="newCashChange" id="newCashChange" placeholder="000000" readonly required>'+
+			 		'<input type="text" style="color:red; height:60px; font-weight:bold; font-size:60px;" class="form-control" name="newCashChange" id="newCashChange" placeholder="Balance" readonly required>'+
 
 			 	'</div>'+
 
-			 '</div>'
+			 '</div>'+
+
+			'</td></tr>'
 
 		 )
 
@@ -622,12 +633,13 @@ $("#newPaymentMethod").change(function(){
       	listMethods()
 
 	}else{
+		$(this).parent().parent().parent().parent().children("center").children("#cashinchanges").hide(); //hide cashin and balance text
 
 		$(this).parent().parent().removeClass('col-xs-4');
 
 		$(this).parent().parent().addClass('col-xs-6');
 
-		 $(this).parent().parent().parent().children('.paymentMethodBoxes').html(
+		 $(this).parent().parent().parent().parent().children('.paymentMethodBoxes').html(
 
 		 	'<div class="col-xs-6" style="padding-left:0px">'+
                         
@@ -659,7 +671,7 @@ $(".saleForm").on("change", "input#newCashValue", function(){
 	var change =  Number(cash) - Number($('#saleTotal').val());
 	console.log("change", change);
 
-	var newCashChange = $(this).parent().parent().parent().children('#getCashChange').children().children('#newCashChange');
+	var newCashChange = $(this).parent().parent().parent().parent().parent().children("tr").children("td").children("#getCashChange").children().children("#newCashChange");
 
 	newCashChange.val(change);
 

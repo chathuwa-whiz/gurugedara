@@ -72,8 +72,10 @@ class productsTableSales{
 						"'.$image.'",
 						"'.$products[$i]["code"].'",
 						"'.$products[$i]["description"].'",
+						"Rs.'.$products[$i]["sellingPrice"].'",
 						"'.$stock.'",
-						"'.$buttons.'"
+						"'.$buttons.'",
+						"Rs.'.$products[$i]["discountPrice"].'"
 					],';
 				}
 
