@@ -25,7 +25,7 @@
       <!--=============================================
       THE FORM
       =============================================-->
-      <div class="col-lg-5 col-xs-12">
+      <div class="col-lg-6 col-xs-12">
         
         <div class="box box-default">
 
@@ -107,7 +107,7 @@
                         
                         <span class="input-group-addon"><i class="fa fa-users"></i></span>
 
-                        <select class="form-control" name="selectCustomer" id="selectCustomer" required>
+                        <select class="form-control" name="selectCustomer" id="selectCustomer">
                           
                             <option value="<?php echo $customers["id"]; ?>"><?php echo $customers["name"]; ?></option>
 
@@ -238,14 +238,56 @@
                           
                           <thead>
                             
-                            <th>Total Discount</th>                            
-                            <th>Net Items Price</th>
-                            <th>Total</th>
+                            <th><h2><b>Net Items Price</b></h1></th>
+                            <th style="color:green;"><h1><b>Total</b></h1></th>
 
                           </thead>
 
                           <tbody>
                             
+                            <tr>
+                              <!-- net items price -->
+                              <td style="width: 40%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">Rs.</span>
+                                  
+                                  <input type="number" style="height:60px; font-weight:bold; font-size:60px;" class="form-control" name="netItemPrice" id="netItemPrice" value="<?php echo $sale["netItemsPrice"] ?>" placeholder="00000" totalSale="" readonly required>
+
+                                  <input type="hidden" style="height:60px; font-weight:bold; font-size:60px;" name="netSaleItem" id="netSaleItem" required>
+
+                                </div>
+
+                              </td>
+
+                              <!-- total -->
+                              <td style="width: 30%">
+
+                                <div class="input-group">
+                                  
+                                  <span class="input-group-addon">Rs.</span>
+                                  
+                                  <input type="number" style="color:green; height:60px; font-weight:bold; font-size:60px;" class="form-control" name="newSaleTotal" id="newSaleTotal" value="<?php echo $sale["totalPrice"] ?>" placeholder="00000" totalSale="" readonly required>
+
+                                  <input type="hidden" style="color:green; height:60px; font-weight:bold; font-size:60px;" name="saleTotal" id="saleTotal" required>
+
+                                </div>
+
+                              </td>
+
+                            </tr>
+
+                            <!-- SECOND ROW -->
+                            <tr>
+                              <td><div style="height:10px"></div></td>
+                            </tr>
+                            <tr>
+                              <th>Discount</th>
+                              <th>Percentage</th>
+                            </tr>
+
+                            <!-- THIRD ROW -->
                             <tr>
                               <!-- total discount -->
                               <td style="width: 30%">
@@ -262,38 +304,7 @@
 
                                 </div>
                               </td>
-                              <!-- net items price -->
-                              <td style="width: 40%">
 
-                                <div class="input-group">
-                                  
-                                  <span class="input-group-addon">Rs.</span>
-                                  
-                                  <input type="number" class="form-control" name="netItemPrice" id="netItemPrice" value="<?php echo $sale["netItemsPrice"] ?>" placeholder="00000" totalSale="" readonly required>
-
-                                  <input type="hidden" name="netSaleItem" id="netSaleItem" required>
-
-                                </div>
-
-                              </td>
-                              <!-- total -->
-                              <td style="width: 30%">
-
-                                <div class="input-group">
-                                  
-                                  <span class="input-group-addon">Rs.</span>
-                                  
-                                  <input type="number" class="form-control" name="newSaleTotal" id="newSaleTotal" value="<?php echo $sale["totalPrice"] ?>" placeholder="00000" totalSale="" readonly required>
-
-                                  <input type="hidden" name="saleTotal" id="saleTotal" required>
-
-                                </div>
-
-                              </td>
-
-                            </tr>
-                             <!-- SECOND ROW -->
-                            <tr>
                               <!-- total discount as percentage -->
                               <td style="width: 30%">
 
@@ -348,11 +359,13 @@
 
                       </div>
 
-                      <div class="paymentMethodBoxes"></div>
+                      <!-- <div class="paymentMethodBoxes"></div> -->
                           
                       <input type="hidden" name="listPaymentMethod" id="listPaymentMethod" required>
 
                     </div>
+
+                    <div class="paymentMethodBoxes"></div>
 
                     <br>
                     
@@ -382,7 +395,7 @@
       =============================================-->
 
 
-      <div class="col-lg-7 hidden-md hidden-sm hidden-xs">
+      <div class="col-lg-6 hidden-md hidden-sm hidden-xs">
         
           <div class="box box-default">
             
@@ -396,12 +409,14 @@
 
                    <tr>
                      
-                     <th style="width:10px">#</th>
+                    <th style="width:10px">#</th>
                      <th>Image</th>
                      <th style="width:30px">Code</th>
                      <th>Description</th>
+                     <th>Price</th>
                      <th>Stock</th>
                      <th>Actions</th>
+                     <th>Discount</th>
 					<!-- Log on to codeastro.com for more projects! -->
                    </tr> 
 
