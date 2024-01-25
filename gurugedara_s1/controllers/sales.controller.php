@@ -75,7 +75,7 @@ class ControllerSales{
 
 			$item1b = "lastPurchase";
 
-			date_default_timezone_set('America/Bogota');
+			date_default_timezone_set('Asia/Colombo');
 
 			$date = date('Y-m-d');
 			$hour = date('H:i:s');
@@ -331,7 +331,7 @@ class ControllerSales{
 
 				$item1b_2 = "lastPurchase";
 
-				date_default_timezone_set('America/Bogota');
+				date_default_timezone_set('Asia/Colombo');
 
 				$date = date('Y-m-d');
 				$hour = date('H:i:s');

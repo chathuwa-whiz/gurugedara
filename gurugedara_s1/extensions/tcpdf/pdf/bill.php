@@ -26,6 +26,7 @@ class printBill
         $answerSale = ControllerSales::ctrShowSales($itemSale, $valueSale);
 
         $saledate = substr($answerSale["saledate"], 0, -8);
+        // $saletime = substr($answerSale["saledate"], 10);
         $products = json_decode($answerSale["products"], true);
         $discount = number_format($answerSale["discount"], 2);
         $discountPercentage = number_format($answerSale["discountPercentage"], 2);
@@ -108,9 +109,8 @@ HTML;
         }
         // Display the content (this is testing purposes only)
         // echo '<pre>';
-        // print_r($products);
+        //     print_r("hellow");
         // echo '</pre>';
-
 
         // Close the table
         $blockAllDetails .= '</table>';
