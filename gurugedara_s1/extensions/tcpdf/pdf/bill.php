@@ -77,10 +77,11 @@ HTML;
         $blockAllDetails = <<<HTML
             <table style="font-size:10px; width:100%; border-collapse: collapse; margin-bottom: 5px;">
                 <tr>
-                    <td>Code</td>
-                    <td>Qty</td>
-                    <td>Unit Price</td>
-                    <td>Amount</td>
+                    <td><b>Code</b></td>
+                    <td><b>Description</b></td>
+                    <td><b>Quantity</b></td>
+                    <td><b>Unit Price</b></td>
+                    <td><b>Amount</b></td>
                 </tr>
 HTML;
 
@@ -89,6 +90,7 @@ HTML;
             // Check if the keys exist before accessing them
             $itemcode = isset($item['code']) ? $item['code'] : '';
             $qty = isset($item['quantity']) ? $item['quantity'] : '';
+            $description = $item['description'];
 
             $unitValue = number_format($item["price"], 2);
             $unitTotalValue = number_format($item["totalPrice"], 2);
@@ -96,13 +98,19 @@ HTML;
             // Add the product row to the PDF
             $blockAllDetails .= <<<HTML
                 <tr>
-                    <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$itemcode}</td>
-                    <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 20%;">{$qty}</td>
-                    <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$unitValue}</td>
-                    <td style="border: 1px solid #ddd; padding: 3px; text-align: center; width: 30%;">{$unitTotalValue}</td>
+                    <td style="border: 1px solid #ddd; padding: 3px;">{$itemcode}</td>
+                    <td style="border: 1px solid #ddd; padding: 3px;">{$description}</td>
+                    <td style="border: 1px solid #ddd; padding: 3px; text-align: center;">{$qty}</td>
+                    <td style="border: 1px solid #ddd; padding: 3px; text-align: center;">{$unitValue}</td>
+                    <td style="border: 1px solid #ddd; padding: 3px; text-align: center;">{$unitTotalValue}</td>
                 </tr>
 HTML;
         }
+        // Display the content (this is testing purposes only)
+        // echo '<pre>';
+        // print_r($products);
+        // echo '</pre>';
+
 
         // Close the table
         $blockAllDetails .= '</table>';
