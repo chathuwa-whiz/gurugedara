@@ -668,7 +668,7 @@ $(".saleForm").on("change", "input#newCashValue", function(){
 	var cash = $(this).val();
 	console.log("cash", cash);
 
-	var change =  Number(cash) - Number($('#saleTotal').val());
+	var change =  Number(cash) - Number($('#newSaleTotal').val());
 	console.log("change", change);
 
 	var newCashChange = $(this).parent().parent().parent().parent().parent().children("tr").children("td").children("#getCashChange").children().children("#newCashChange");
