@@ -177,6 +177,8 @@ class ControllerSales{
 
 				// $printer -> close(); 
 
+
+
 				echo'<script>
 
 				localStorage.removeItem("range");
@@ -197,6 +199,7 @@ class ControllerSales{
 									var saleCode = '.$_POST["newSale"].';
 									
 									window.open("extensions/tcpdf/pdf/bill.php?code="+saleCode, "_blank");  // print the recipt
+
 									
 								}
 							})
@@ -347,12 +350,12 @@ class ControllerSales{
 
 			$data = array("idSeller"=>$_POST["idSeller"],
 						   "idCustomer"=>$_POST["selectCustomer"],
-						   "code"=>$_POST["newSale"],
+						   "code"=>$_POST["editSale"],
 						   "products"=>$_POST["productsList"],
 						   "discount"=>$_POST["newDiscountSale"],
 						   "discountPercentage"=>$_POST["newDiscountPercentage"],
-						   "netItemsPrice"=>$_POST["netSaleItem"],
-						   "totalPrice"=>$_POST["saleTotal"],
+						   "netItemsPrice"=>$_POST["netItemPrice"],
+						   "totalPrice"=>$_POST["newSaleTotal"],
 						   "paymentMethod"=>$_POST["listPaymentMethod"]);
 
 

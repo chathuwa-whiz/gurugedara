@@ -65,7 +65,7 @@ class printBill
                     <td>Main Branch Polgahawela</td>
                 </tr>
                 <tr>
-                    <td>070 3 273 747 / 077 2 213793 <br>Date: $saledate &nbsp; &nbsp;  Time: $saletime <br></td>
+                    <td>070 3 273 747 / 077 2 213793 <br>Date: $saledate &nbsp; &nbsp;  Time: $saletime <br> Bill No: {$valueSale}</td>
                 </tr>
                 <tr>
                     <td>Customer name: {$answerCustomer['name']} &nbsp;&nbsp;&nbsp; Seller: {$answerSeller['name']}<br></td>
@@ -76,13 +76,14 @@ HTML;
 
         // All details in a single table
         $blockAllDetails = <<<HTML
-            <table style="font-size:8px; width:100%; border-collapse: collapse; margin-bottom: 2px;">
+            <table style="font-size:6px; width:100%; border-collapse: collapse; margin-bottom: 2px;">
                 <tr>
-                    <td><b>Code</b></td>
-                    <td><b>Description</b></td>
-                    <td><b>Quantity</b></td>
+                    <td style="width:15px"><b>#</b></td>
+                    <td style="width:40px"><b>Name</b></td>
+                    <td style="width:20px"><b>Qty</b></td>
                     <td><b>Unit Price</b></td>
-                    <td><b>Amount</b></td>
+                    <td><b>Our Price</b></td>
+                    <td style="width:30px"><b>Amount</b></td>
                 </tr>
 HTML;
 
@@ -94,15 +95,18 @@ HTML;
             $description = $item['description'];
 
             $unitValue = number_format($item["price"], 2);
+            $ourPrice = number_format($item["ourPrice"], 2);
             $unitTotalValue = number_format($item["totalPrice"], 2);
+            $index = number_format($item["index"]);
 
             // Add the product row to the PDF
             $blockAllDetails .= <<<HTML
                 <tr>
-                    <td style="border: 1px solid #ddd; padding: 1px;">{$itemcode}</td>
+                    <td style="border: 1px solid #ddd; padding: 1px;">{$index}</td> 
                     <td style="border: 1px solid #ddd; padding: 1px;">{$description}</td>
                     <td style="border: 1px solid #ddd; padding: 1px; text-align: center;">{$qty}</td>
                     <td style="border: 1px solid #ddd; padding: 1px; text-align: center;">{$unitValue}</td>
+                    <td style="border: 1px solid #ddd; padding: 1px; text-align: center;">{$ourPrice}</td>
                     <td style="border: 1px solid #ddd; padding: 1px; text-align: center;">{$unitTotalValue}</td>
                 </tr>
 HTML;
@@ -113,51 +117,58 @@ HTML;
 
        $pdf->writeHTML($blockAllDetails, false, false, false, false, '');
 
-        // Amount details block
-        $blockAmountDetails = <<<HTML
-            <table style="font-size:8px; text-align:center; width:100%; margin-top: 1px; border-collapse: collapse; border-spacing: 0;">
-                <tr>
-                    <td colspan="2" style="font-weight: bold; padding-bottom: 1px;"></td>
-                </tr>
-                <tr>
-                    <td style="padding: 1px;">Items Value:</td>
-                    <td style="padding: 1px;">{$netPrice}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 1px;"><b>Discount: </b></td>
-                    <td style="padding: 1px;"><b>{$discount}</b></td>
-                </tr>
-                <tr>
-                    <td style="padding: 1px;"><b>Total Amount: </b></td>
-                    <td style="padding: 1px;"><b>{$totalPrice}</b></td>
-                </tr>
-                <tr>
-                    <td colspan="2" style="height: 3px;"></td>
-                </tr>
-                <tr>
-                    <td style="padding: 1px;">Cash:</td>
-                    <td style="padding: 1px;">{$cashin}</td>
-                </tr>
-                <tr>
-                    <td style="padding: 1px;">Balance:</td>
-                    <td style="padding: 1px;">{$balance}</td>
-                </tr>
-            </table>
+       // Amount details block
+$blockAmountDetails = <<<HTML
+<table style="font-size:8px; text-align:center; width:100%; margin-top: 1px; border-collapse: collapse; border-spacing: 0;">
+    <tr>
+        <td colspan="2" style="font-weight: bold; padding-bottom: 1px;"></td>
+    </tr>
+    <tr>
+        <td style="padding: 1px; text-align: right;">Items Value:</td>
+        <td style="padding: 1px; text-align: right;">{$netPrice}</td>
+    </tr>
+    <tr>
+        <td style="padding: 1px; text-align: right;"><b>Discount: </b></td>
+        <td style="padding: 1px; text-align: right;"><b>{$discount}</b></td>
+    </tr>
+    <tr><td colspan="2"><hr></td></tr> 
+    <tr>
+    <td style="padding: 1px; text-align: right;"><b>Total Amount: </b></td>
+        <td style="padding: 1px; text-align: right;"><b>{$totalPrice}</b></td>
+    </tr>
+    <tr>
+        <td colspan="2" style="height: 3px;"></td>
+    </tr>
+    <tr>
+        <td style="padding: 1px; text-align: right;">Cash:</td>
+        <td style="padding: 1px; text-align: right;">{$cashin}</td>
+    </tr>
+    <tr>
+        <td style="padding: 1px; text-align: right;">Balance:</td>
+        <td style="padding: 1px; text-align: right;">{$balance}</td>
+    </tr>
+</table>
 HTML;
 
-       $pdf->writeHTML($blockAmountDetails, false, false, false, false, '');
+$pdf->writeHTML($blockAmountDetails, false, false, false, false, '');
 
-        // Footer: Thank you come again!
-        $blockFooter = <<<EOF
-            <table style="font-size:8px; text-align:center; width:100%;">
-                <tr>
-                    <td><br><br><br><br><b>THANK YOU COME AGAIN! <br> POWERD BY AVCEDITS </b></td>	
-                </tr>
-            </table>
+// Footer: Thank you come again!
+$blockFooter = <<<EOF
+<table style="font-size:8px; text-align:center; width:100%; height: 100%;">
+    <tr>
+        <td>
+            <hr>
+        </td>
+    </tr>
+    <tr>
+        <td style="vertical-align: middle; height: 100%;">
+            <b style="display: inline-block; vertical-align: middle; color: black;">THANK YOU <br> COME AGAIN! <br> POWERD BY AVCEDITS </b>
+        </td>
+    </tr>
+</table>
 EOF;
 
-       $pdf->writeHTML($blockFooter, false, false, false, false, '');
-
+$pdf->writeHTML($blockFooter, false, false, false, false, '');
         // Output 
 
         $pdf->Output('bill.pdf');

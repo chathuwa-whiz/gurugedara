@@ -651,7 +651,7 @@ $("#newPaymentMethod").change(function(){
                   
                 '</div>'+
 
-              '</div>')
+            '</div>')
 
 	}
 
@@ -708,12 +708,16 @@ function listProducts(){
 	for(var i = 0; i < description.length; i++){
 
 		productsList.push({ "id" : $(description[i]).attr("idProduct"),
+							"index" : (i+1).toString(),
 							"code" : barcode[i],
 							"description" : $(description[i]).val(),
 							"quantity" : $(quantity[i]).val(),
 							"stock" : $(quantity[i]).attr("newStock"),
 							"price" : $(price[i]).attr("realPrice"),
-							"totalPrice" : $(price[i]).val()});
+							"discount" : $(discount[i]).attr("realPrice"),
+							"ourPrice" : ($(price[i]).attr("realPrice") - $(discount[i]).attr("realPrice")).toString(),
+							"totalPrice" : (($(price[i]).attr("realPrice") - $(discount[i]).attr("realPrice")) * $(quantity[i]).val()).toString()
+						});
 	}
 
 	$("#productsList").val(JSON.stringify(productsList));

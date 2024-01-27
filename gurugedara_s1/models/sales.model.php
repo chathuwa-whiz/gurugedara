@@ -54,8 +54,6 @@ class ModelSales{
 		$stmt->bindParam(":netItemsPrice", $data["netItemsPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
-		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
-		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
 		$stmt->bindParam(":cashin", $_POST["newCashValue"], PDO::PARAM_STR);
 		$stmt->bindParam(":balance", $_POST["newCashChange"], PDO::PARAM_STR);
 
@@ -82,7 +80,7 @@ class ModelSales{
 	
 	static public function mdlEditSale($table, $data){
 
-		$stmt = Connection::connect()->prepare("UPDATE $table SET  idCustomer = :idCustomer, idSeller = :idSeller, products = :products, totalPrice= :totalPrice, netItemsPrice= :netItemsPrice, discount= :discount, discountPercentage= :discountPercentage, paymentMethod = :paymentMethod WHERE code = :code");
+		$stmt = Connection::connect()->prepare("UPDATE $table SET idCustomer = :idCustomer, idSeller = :idSeller, products = :products, totalPrice= :totalPrice, netItemsPrice= :netItemsPrice, discount= :discount, discountPercentage= :discountPercentage, paymentMethod = :paymentMethod, cashin = :cashin, balance = :balance WHERE code = :code");
 
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
 		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
@@ -93,6 +91,8 @@ class ModelSales{
 		$stmt->bindParam(":netItemsPrice", $data["netItemsPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
+		$stmt->bindParam(":cashin", $_POST["newCashValue"], PDO::PARAM_STR);
+		$stmt->bindParam(":balance", $_POST["newCashChange"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 
