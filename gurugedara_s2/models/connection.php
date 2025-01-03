@@ -4,7 +4,7 @@ class Connection{
 
 	public function connect(){
 
-		$link = new PDO("mysql:host=127.0.0.1;dbname=gurugedara_db2", "avcedits", "Avc@2024%db");
+		$link = new PDO("mysql:host=127.0.0.1;dbname=gurugedara_db2", "chathuwa", "Chathuwa@2025");
 
 		$link -> exec("set names utf8");
 
