@@ -41,37 +41,87 @@ class ModelSales{
 	REGISTERING SALE
 	=============================================*/
 	/* --LOG ON TO codeastro.com FOR MORE PROJECTS-- */
-	static public function mdlAddSale($table, $data){
-
-		$stmt = Connection::connect()->prepare("INSERT INTO $table(code, idCustomer, idSeller, products, totalPrice, netItemsPrice, discount, discountPercentage, paymentMethod, cashin, balance) VALUES (:code, :idCustomer, :idSeller, :products, :totalPrice, :netItemsPrice, :discount, :discountPercentage, :paymentMethod, :cashin, :balance)");
-
-		$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
-		$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
-		$stmt->bindParam(":idSeller", $data["idSeller"], PDO::PARAM_INT);
-		$stmt->bindParam(":products", $data["products"], PDO::PARAM_STR);
-		$stmt->bindParam(":discount", $data["discount"], PDO::PARAM_STR);
-		$stmt->bindParam(":discountPercentage", $data["discountPercentage"], PDO::PARAM_STR);
-		$stmt->bindParam(":netItemsPrice", $data["netItemsPrice"], PDO::PARAM_STR);
-		$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
-		$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
-		$stmt->bindParam(":cashin", $_POST["newCashValue"], PDO::PARAM_STR);
-		$stmt->bindParam(":balance", $_POST["newCashChange"], PDO::PARAM_STR);
-
-		if($stmt->execute()){
-
+	static public function mdlAddSale($table, $data) {
+		try {
+			$conn = Connection::connect();
+			$conn->beginTransaction();
+	
+			$stmt = $conn->prepare("INSERT INTO $table(code, idCustomer, idSeller, products, totalPrice, netItemsPrice, discount, discountPercentage, paymentMethod, cashin, balance) 
+								   VALUES (:code, :idCustomer, :idSeller, :products, :totalPrice, :netItemsPrice, :discount, :discountPercentage, :paymentMethod, :cashin, :balance)");
+	
+			// Bind parameters with type checking
+			try {
+				$stmt->bindParam(":code", $data["code"], PDO::PARAM_INT);
+				$stmt->bindParam(":idCustomer", $data["idCustomer"], PDO::PARAM_INT);
+				$stmt->bindParam(":idSeller", $data["idSeller"], PDO::PARAM_INT);
+				$stmt->bindParam(":products", $data["products"], PDO::PARAM_STR);
+				$stmt->bindParam(":discount", $data["discount"], PDO::PARAM_STR);
+				$stmt->bindParam(":discountPercentage", $data["discountPercentage"], PDO::PARAM_STR);
+				$stmt->bindParam(":netItemsPrice", $data["netItemsPrice"], PDO::PARAM_STR);
+				$stmt->bindParam(":totalPrice", $data["totalPrice"], PDO::PARAM_STR);
+				$stmt->bindParam(":paymentMethod", $data["paymentMethod"], PDO::PARAM_STR);
+				
+				// Validate POST variables exist
+				if (!isset($_POST["newCashValue"]) || !isset($_POST["newCashChange"])) {
+					throw new Exception("Cash value or change amount is missing");
+				}
+				
+				// Remove commas and format cash values
+				$cashIn = str_replace(',', '', $_POST["newCashValue"]);
+				$cashChange = str_replace(',', '', $_POST["newCashChange"]);
+				
+				// Validate if the values are numeric after formatting
+				if (!is_numeric($cashChange) || !is_numeric($cashIn)) {
+					throw new Exception("Invalid cash amount format");
+				}
+				
+				$stmt->bindParam(":cashin", $cashIn, PDO::PARAM_STR);
+				$stmt->bindParam(":balance", $cashChange, PDO::PARAM_STR);
+				
+				// Debug code to check values
+				echo '<script>console.log("Balance value after formatting:", ' . json_encode($cashChange) . ');</script>';
+			} catch (PDOException $e) {
+				throw new Exception("Error binding parameters: " . $e->getMessage());
+			}
+	
+			// Execute the statement
+			if (!$stmt->execute()) {
+				$errorInfo = $stmt->errorInfo();
+				throw new Exception("Database error: " . $errorInfo[2]);
+			}
+	
+			// If everything is successful, commit the transaction
+			$conn->commit();
+			
 			return "ok";
-
-		}else{
-
-			echo '<script>console.log("error in uploading sale data.check sales.model.php.");</script>';
-
-			return "error";
-		
+	
+		} catch (Exception $e) {
+			// Roll back the transaction on error
+			if (isset($conn)) {
+				$conn->rollBack();
+			}
+	
+			// Log the error
+			error_log("Sale Addition Error: " . $e->getMessage());
+			
+			// Return detailed error for debugging
+			return [
+				"status" => "error",
+				"message" => $e->getMessage(),
+				"details" => [
+					"file" => $e->getFile(),
+					"line" => $e->getLine(),
+					"trace" => $e->getTraceAsString()
+				]
+			];
+	
+		} finally {
+			// Clean up
+			if (isset($stmt)) {
+				$stmt->closeCursor();
+				$stmt = null;
+			}
 		}
-
-		$stmt->close();
-		$stmt = null;
-
 	}
 	/* --LOG ON TO codeastro.com FOR MORE PROJECTS-- */
 	/*=============================================

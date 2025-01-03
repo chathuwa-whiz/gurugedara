@@ -105,80 +105,6 @@ class ControllerSales{
 
 			if($answer == "ok"){
 
-				echo '<script>console.log('.json_encode($data).')</script>';
-
-				// $printer = "epson20";
-
-				// $connector = new WindowsPrintConnector($printer);
-
-				// $printer = new Printer($connector);
-
-				// $printer -> setJustification(Printer::JUSTIFY_CENTER);
-
-				// $printer -> text(date("Y-m-d H:i:s")."\n");//Invoice date
-
-				// $printer -> feed(1); //We feed paper 1 time*/
-
-				// $printer -> text("Inventory System"."\n");//Company name
-
-				// $printer -> text("ID: 71.759.963-9"."\n");//Company's ID
-
-				// $printer -> text("Address: 5th Ave. Miami Fl"."\n");//Company address
-
-				// $printer -> text("Phone: 300 786 52 49"."\n");//Company's phone
-
-				// $printer -> text("Invoice N.".$_POST["newSale"]."\n");//Invoice number
-
-				// $printer -> feed(1); //We feed paper 1 time*/
-
-				// $printer -> text("Customer: ".$getCustomer["name"]."\n");//Customer's name
-
-				// $tableSeller = "users";
-				// $item = "id";
-				// $seller = $_POST["idSeller"];
-
-				// $getSeller = UsersModel::MdlShowUsers($tableSeller, $item, $seller);
-
-				// $printer -> text("Seller: ".$getSeller["name"]."\n");//Seller's name
-
-				// $printer -> feed(1); //We feed paper 1 time*/
-
-				// foreach ($productsList as $key => $value) {
-
-				// 	$printer->setJustification(Printer::JUSTIFY_LEFT);
-
-				// 	$printer->text($value["description"]."\n");//Product's name
-
-				// 	$printer->setJustification(Printer::JUSTIFY_RIGHT);
-
-				// 	$printer->text("$ ".number_format($value["price"],2)." Und x ".$value["quantity"]." = $ ".number_format($value["totalPrice"],2)."\n");
-
-				// }
-
-				// $printer -> feed(1); //We feed paper 1 time*/			
-				
-				// $printer->text("NET: $ ".number_format($_POST["newNetPrice"],2)."\n"); //net price
-
-				// $printer->text("TAX: $ ".number_format($_POST["newTaxPrice"],2)."\n"); //tax value
-
-				// $printer->text("--------\n");
-
-				// $printer->text("TOTAL: $ ".number_format($_POST["saleTotal"],2)."\n"); //ahora va el total
-
-				// $printer -> feed(1); //We feed paper 1 time*/	
-
-				// $printer->text("Thanks for your purchase"); //We can add a footer
-
-				// $printer -> feed(3); //We feed paper 3 times*/
-
-				// $printer -> cut(); //We cut the paper, if the printer has the option
-
-				// $printer -> pulse(); //Through the printer we send a pulse to open the cash drawer.
-
-				// $printer -> close(); 
-
-
-
 				echo'<script>
 
 				localStorage.removeItem("range");
@@ -192,20 +118,39 @@ class ControllerSales{
 								if (result.value) { 
 									// result.value is a boolean value (true or false)
 
-									// window.location = "sales";
-
-									console.log('.$_POST["newSale"].');
-
 									var saleCode = '.$_POST["newSale"].';
-									
+
 									window.open("extensions/tcpdf/pdf/bill.php?code="+saleCode, "_blank");  // print the recipt
 
-									
+									window.location.href = "create-sale";
+
+									console.log('.$_POST["newSale"].');								
 								}
 							})
 
 				</script>';
 
+			} else {
+				// Handle error case
+				$errorMessage = is_array($answer) ? $answer["message"] : "An unknown error occurred";
+				
+				echo '<script>
+					localStorage.removeItem("range");
+					swal({
+						type: "error",
+						title: "Error",
+						text: "' . $errorMessage . '",
+						showConfirmButton: true,
+						confirmButtonText: "Close"
+					}).then((result) => {
+						if (result.value) {
+							window.location.href = "create-sale";
+						}
+					});
+					
+					// Log detailed error information to console for debugging
+					console.error(' . json_encode($answer) . ');
+				</script>';
 			}
 
 		}

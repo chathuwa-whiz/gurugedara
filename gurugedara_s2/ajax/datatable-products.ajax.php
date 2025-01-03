@@ -74,7 +74,21 @@ class productsTable{
 		  				$buttons =  "<div class='btn-group'><button class='btn btn-primary btnEditProduct' idProduct='".$products[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'><i class='fa fa-pencil'></i></button></div>";
 		  			}
 		  			else{
-		  				$buttons =  "<div class='btn-group'><button class='btn btn-primary btnEditProduct' idProduct='".$products[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'><i class='fa fa-pencil'></i></button><button class='btn btn-danger btnDeleteProduct' idProduct='".$products[$i]["id"]."' code='".$products[$i]["code"]."' image='".$products[$i]["image"]."'><i class='fa fa-trash'></i></button></div>";
+		  				$buttons =  "<div class='btn-group'>";
+
+		  				$buttons .=  "<button class='btn btn-primary btnEditProduct' idProduct='".$products[$i]["id"]."' data-toggle='modal' data-target='#modalEditProduct'>";
+		  				$buttons .=  "<i class='fa fa-pencil'></i>";
+		  				$buttons .=  "</button>";
+
+		  				$buttons .=  "<button class='btn btn-success btnAddStock' idProduct='".$products[$i]["id"]."' data-toggle='modal' data-target='#modalAddStock'>";
+		  				$buttons .=  "<i class='fa fa-plus'></i>";
+		  				$buttons .=  "</button>";
+
+		  				$buttons .=  "<button class='btn btn-danger btnDeleteProduct' idProduct='".$products[$i]["id"]."' code='".$products[$i]["code"]."' image='".$products[$i]["image"]."'>";
+		  				$buttons .=  "<i class='fa fa-trash'></i>";
+		  				$buttons .=  "</button>";
+
+		  				$buttons .=  "</div>";
 		  			}
 
 					$jsonData .='[

@@ -57,9 +57,9 @@ if($_SESSION["profile"] == "Special" || $_SESSION["profile"] == "Seller"){
 
         <?php
 
-        if(isset($_GET["inicialDate"])){
+        if(isset($_GET["initialDate"])){
 
-          echo '<a href="views/modules/download-report.php?report=report&inicialDate='.$_GET["inicialDate"].'&finalDate='.$_GET["finalDate"].'">';
+          echo '<a href="views/modules/download-report.php?report=report&initialDate='.$_GET["initialDate"].'&finalDate='.$_GET["finalDate"].'">';
 
         }else{
 

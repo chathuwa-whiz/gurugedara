@@ -264,7 +264,45 @@ $(".productsTable tbody").on("click", "button.btnEditProduct", function(){
   })
 
 })
-/* LOG ON TO codeastro.com FOR MORE PROJECTS */
+
+/*=============================================
+ADD NEW STOCK
+=============================================*/
+
+$('.productsTable tbody').on("click", "button.btnAddStock", function () {
+	
+	var idProduct = $(this).attr("idProduct");
+	
+	var datum = new FormData();
+    datum.append("idProduct", idProduct);
+
+     $.ajax({
+
+      url:"ajax/products.ajax.php",
+      method: "POST",
+      data: datum,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType:"json",
+      success:function(answer){
+
+		console.log(answer);
+		
+
+         $("#productCode").val(answer["code"]);
+
+         $("#productName").val(answer["description"]);
+
+         $("#currentStock").val(answer["stock"]);
+
+      }
+
+  })
+
+});
+  
+
 /*=============================================
 DELETE PRODUCT
 =============================================*/

@@ -238,8 +238,8 @@ if($_SESSION["profile"] == "Special"){
                                 <div class="input-group">
 
                                   <span class="input-group-addon">Rs.</span>
-                                  
-                                  <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" placeholder="0" min="0" readonly required>
+                                  <!-- discount input -->
+                                  <input type="number" class="form-control" name="newDiscountSale" id="newDiscountSale" placeholder="0" min="0" step="0.01" required>
 
                                   <input type="hidden" name="newDiscountPrice" id="newDiscountPrice" required>
 
@@ -252,8 +252,8 @@ if($_SESSION["profile"] == "Special"){
                               <td style="width: 50%">
 
                                 <div class="input-group">
-                            
-                                  <input type="number" class="form-control" name="newDiscountPercentage" id="newDiscountPercentage" placeholder="0" min="0" readonly required>
+                                  <!-- discount as percentage input -->
+                                  <input type="number" class="form-control" name="newDiscountPercentage" id="newDiscountPercentage" placeholder="0" min="0" step="0.01" required>
 
                                   <input type="hidden" name="newDiscountPercentagePrice" id="newDiscountPercentagePrice" required>
 
