@@ -172,6 +172,12 @@ if($xml){
                           <button class="btn btn-danger btnDeleteSale" idSale="'.$value["id"].'"><i class="fa fa-trash"></i></button>';
                        }
 
+                       if( $_SESSION["profile"] == "Seller"){
+                        
+                        echo '<button class="btn btn-primary btnEditSale" idSale="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+                         ';
+                      }
+
                    echo '</div>  
 
                   </td>

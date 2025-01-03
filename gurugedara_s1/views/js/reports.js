@@ -56,7 +56,7 @@ $(".daterangepicker.opensright .range_inputs .cancelBtn").on("click", function()
 
 	localStorage.removeItem("captureRange2");
 	localStorage.clear();
-	window.location = "sales";
+	window.location = "reports";
 })
 
 /*=============================================
@@ -71,36 +71,24 @@ $(".daterangepicker.opensright .ranges li").on("click", function(){
 
 		var d = new Date();
 		
-		var day = d.getDate();
-		var month= d.getMonth()+1;
+		// Format the date using String.prototype.padStart to ensure two digits
+		var day = String(d.getDate()).padStart(2, '0');
+		var month = String(d.getMonth() + 1).padStart(2, '0');
 		var year = d.getFullYear();
 
-		if(month < 10){
+		// Construct the date string
+		var formattedDate = year + "-" + month + "-" + day;
 
-			var initialDate = year+"-0"+month+"-"+day;
-			var finalDate = year+"-0"+month+"-"+day;
+		// Set initialDate and finalDate to the same value
+		var initialDate = formattedDate;
+		var finalDate = formattedDate;
 
-		}else if(day < 10){
+		// Store the selected range in localStorage
+		localStorage.setItem("captureRange2", "Today");
 
-			var initialDate = year+"-"+month+"-0"+day;
-			var finalDate = year+"-"+month+"-0"+day;
-
-		}else if(month < 10 && day < 10){
-
-			var initialDate = year+"-0"+month+"-0"+day;
-			var finalDate = year+"-0"+month+"-0"+day;
-
-		}else{
-
-			var initialDate = year+"-"+month+"-"+day;
-	    	var finalDate = year+"-"+month+"-"+day;
-
-		}	
-
-    	localStorage.setItem("captureRange2", "Today");
-
-    	window.location = "index.php?route=sales&initialDate="+initialDate+"&finalDate="+finalDate;
+		// Redirect to the specified route with the selected date range
+		window.location = "index.php?route=reports&initialDate=" + initialDate + "&finalDate=" + finalDate;
 
 	}
 
-})
+});

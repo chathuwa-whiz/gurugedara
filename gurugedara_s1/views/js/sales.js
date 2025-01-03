@@ -156,11 +156,12 @@ $(".salesTable tbody").on("click", "button.addProductSale", function(){
 
       	}
 
-     })
+    })
 
 });
 
-/* LOG ON TO codeastro.com FOR MORE PROJECTS */
+
+
 /*=============================================
 WHEN TABLE LOADS EVERYTIME THAT NAVIGATE IN IT
 =============================================*/
@@ -190,62 +191,49 @@ REMOVE PRODUCTS FROM THE SALE AND RECOVER BUTTON
 
 var idRemoveProduct = [];
 
-localStorage.removeItem("removeProduct");
+// Initialize the localStorage item if it doesn't exist
+if (localStorage.getItem("removeProduct")) {
+    idRemoveProduct = JSON.parse(localStorage.getItem("removeProduct"));
+}
 
-$(".saleForm").on("click", "button.removeProduct", function(){
+$(".saleForm").on("click", "button.removeProduct", function() {
 
-	console.log("$(this)", $(this));
-	$(this).parent().parent().parent().parent().remove();
+    console.log("Clicked button:", $(this));
 
-	console.log("idProduct", idProduct);
-	var idProduct = $(this).attr("idProduct");
+    // Remove the product row from the DOM
+    $(this).closest(".row").remove();
 
-	/*=============================================
-	STORE IN LOCALSTORAGE THE ID OF THE PRODUCT WE WANT TO DELETE
-	=============================================*/
+    var idProduct = $(this).attr("idProduct");
+    console.log("Product ID:", idProduct);
 
-	if(localStorage.getItem("removeProduct") == null){
+    // Store the ID of the product we want to delete
+    if (!idRemoveProduct.some(item => item.idProduct === idProduct)) {
+        idRemoveProduct.push({ idProduct: idProduct });
 
-		idRemoveProduct = [];
-	
-	}else{
+        localStorage.setItem("removeProduct", JSON.stringify(idRemoveProduct));
+    }
 
-		idRemoveProduct.concat(localStorage.getItem("removeProduct"))
+    // Update the recover button
+    $("button.recoverButton[idProduct='" + idProduct + "']").removeClass('btn-default').addClass('btn-primary addProductSale');
 
-	}
+    // Update the totals and product list if there are still products
+    if ($(".newProduct").children().length === 0) {
+        $("#newDiscountPercentage").val(0);
+        $("#newTotalSale").val(0);
+        $("#totalSale").val(0);
+        $("#newTotalSale").attr("totalSale", 0);
+    } else {
+        // Adding total prices
+        addingTotalPrices();
 
-	idRemoveProduct.push({"idProduct":idProduct});
+        // Add tax
+        priceChange();
 
-	localStorage.setItem("removeProduct", JSON.stringify(idRemoveProduct));
+        // Group products in JSON format
+        listProducts();
+    }
+});
 
-	$("button.recoverButton[idProduct='"+idProduct+"']").removeClass('btn-default');
-
-	$("button.recoverButton[idProduct='"+idProduct+"']").addClass('btn-primary addProductSale');
-
-	if($(".newProduct").children().length == 0){
-
-		$("#newDiscountPercentage").val(0);
-		$("#newTotalSale").val(0);
-		$("#totalSale").val(0);
-		$("#newTotalSale").attr("totalSale",0);
-
-	}else{
-
-		// ADDING TOTAL PRICES
-
-    	addingTotalPrices()
-
-    	// ADD TAX
-	        
-        priceChange()
-
-        // GROUP PRODUCTS IN JSON FORMAT
-
-        listProducts()
-
-	}
-
-})
 
 /*=============================================
 ADDING PRODUCT FROM A DEVICE
@@ -485,6 +473,7 @@ $(".saleForm").on("change", "input.newProductQuantity", function(){
 /*============================================
 PRICES ADDITION
 =============================================*/
+
 var totalDiscount = Number(0);
 var netPrice = Number(0);
 var totalPrice = Number(0);
@@ -990,3 +979,4 @@ $(".openXML").click(function(){
 
 
 })
+

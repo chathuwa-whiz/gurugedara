@@ -139,6 +139,8 @@
             $_GET["route"] == 'create-sale' ||
             $_GET["route"] == 'edit-sale' ||
             $_GET["route"] == 'reports' ||
+            $_GET["route"] == 'stock' ||
+            $_GET["route"] == 'incomeProfit' ||
             $_GET["route"] == 'logout'){
 
           include "modules/".$_GET["route"].".php";

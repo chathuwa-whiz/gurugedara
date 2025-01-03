@@ -73,7 +73,7 @@ class ProductsModel{
 	static public function mdlEditProduct($table, $data){
 
 		$stmt = Connection::connect()->prepare("UPDATE $table SET idCategory = :idCategory, description = :description, image = :image, stock = :stock, buyingPrice = :buyingPrice, sellingPrice = :sellingPrice, discountPrice = :discountPrice WHERE code = :code");
-
+		
 		$stmt->bindParam(":idCategory", $data["idCategory"], PDO::PARAM_INT);
 		$stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
 		$stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
@@ -82,18 +82,45 @@ class ProductsModel{
 		$stmt->bindParam(":buyingPrice", $data["buyingPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":sellingPrice", $data["sellingPrice"], PDO::PARAM_STR);
 		$stmt->bindParam(":discountPrice", $data["discountPrice"], PDO::PARAM_STR);
-
+		
+		
+		// Step 1: Retrieve current stock value
+		$stmtSelect = Connection::connect()->prepare("SELECT stock FROM $table WHERE code = :code");
+		$stmtSelect->bindParam(":code", $data["code"], PDO::PARAM_STR);
+		$stmtSelect->execute();
+		$currentData = $stmtSelect->fetch(PDO::FETCH_ASSOC);
+		$currentStock = $currentData['stock'];
+		echo '<script>console.log("current stock '.$currentStock.'");</script>';
+		
 		if($stmt->execute()){
+			
+			echo '<script>console.log("new stock '.$data["stock"].'");</script>';
+			
+			// Step 2: Check if stock value has changed
+			if ($currentStock != $data["stock"]) {
+				// Step 3: Insert product details into stock table
+				$stmtInsert = Connection::connect()->prepare("INSERT INTO stock (productName, stockCount, date) VALUES (:productName, :stockCount, NOW())");
+				$stmtInsert->bindParam(":productName", $data["code"], PDO::PARAM_STR);
+				$stmtInsert->bindParam(":stockCount", $data["stock"], PDO::PARAM_INT);
+				if($stmtInsert->execute())
+				{
+					return "ok";
 
+				}
+			}
+			
 			return "ok";
-
+			
 		}else{
-
+			
 			return "error";
 		
 		}
 
+
 		$stmt->close();
+		$stmtInsert->close();
+		$stmtInsert = null;
 		$stmt = null;
 
 	}

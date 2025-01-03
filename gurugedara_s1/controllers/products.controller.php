@@ -112,6 +112,18 @@ class controllerProducts{
 
 				if($answer == "ok"){
 
+					// update stock information
+					$stockData = array(
+						"productName" => $_POST["newDescription"],
+						"productCode" => $_POST["newCode"],
+						"previousStock" => 0,  // current stock
+						"newStock" => $_POST["newStock"],            // newly added stock
+						"currentStock" => $_POST["previousStock"] + $_POST["newStock"],    // updated stock value
+						"date" => date('Y-m-d'),
+						"time" => date('H:i:s')
+					);
+					stockModel::mdlAddStock($stockData);
+
 					echo'<script>
 
 						swal({
@@ -155,7 +167,7 @@ class controllerProducts{
 		}
 
 	}
-	/* --LOG ON TO codeastro.com FOR MORE PROJECTS-- */
+	
 	/*=============================================
 	EDIT PRODUCT
 	=============================================*/
@@ -273,7 +285,7 @@ class controllerProducts{
 							  }).then(function(result){
 										if (result.value) {
 
-										window.location = "products";
+											window.location = "products";
 
 										}
 									})
@@ -295,7 +307,7 @@ class controllerProducts{
 						  }).then(function(result){
 							if (result.value) {
 
-							window.location = "products";
+								window.location = "products";
 
 							}
 						})
@@ -306,7 +318,7 @@ class controllerProducts{
 		}
 
 	}
-	/* --LOG ON TO codeastro.com FOR MORE PROJECTS-- */
+	
 	/*=============================================
 	DELETE PRODUCT
 	=============================================*/
@@ -338,7 +350,7 @@ class controllerProducts{
 					  }).then(function(result){
 								if (result.value) {
 
-								window.location = "products";
+									window.location = "products";
 
 								}
 							})
@@ -350,7 +362,7 @@ class controllerProducts{
 		}
 
 	}
-	/* --LOG ON TO codeastro.com FOR MORE PROJECTS-- */
+	
 	/*=============================================
 	SHOW ADDING OF THE SALES
 	=============================================*/
