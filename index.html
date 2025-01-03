@@ -9,10 +9,6 @@
         body {
             font-family: 'Arial', sans-serif;
             text-align: center;
-            background-image: url('https://images.unsplash.com/flagged/photo-1551373916-bdaddbf4f881?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -20,13 +16,17 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #000000;
+            background: linear-gradient(135deg, #ffcccc, #ffe6e6);
+            color: #333;
+            overflow: hidden;
+            position: relative;
         }
 
         h1 {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #FF5733;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         .store-button {
@@ -34,28 +34,113 @@
             margin: 10px;
             font-size: 1.2em;
             cursor: pointer;
-            border: none;
+            border: 2px solid #FF5733;
             border-radius: 5px;
-            background-color: #FA2716;
-            color: #fff;
-            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            background-color: #fff;
+            color: #FF5733;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .store-button:hover {
-            background-color: #BB1933;
-            color: #FEF31B;
+            background-color: #FF5733;
+            color: #fff;
             box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        footer a {
+            color: #FF5733;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .floating-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: float 5s infinite ease-in-out;
+        }
+
+        .floating-icon.book {
+            background-image: url('./asset/book.png');
+        }
+
+        .floating-icon.pencil {
+            background-image: url('./asset/pencil.png');
+        }
+
+        .floating-icon.pen {
+            background-image: url('./asset/ruler.png');
+        }
+
+        .floating-icon.paper {
+            background-image: url('./asset/scissors.png');
+        }
+
+        .floating-icon:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            animation-duration: 6s;
+        }
+
+        .floating-icon:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            animation-duration: 7s;
+        }
+
+        .floating-icon:nth-child(3) {
+            top: 80%;
+            left: 30%;
+            animation-duration: 5s;
+        }
+
+        .floating-icon:nth-child(4) {
+            top: 20%;
+            left: 60%;
+            animation-duration: 4s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="floating-icon book"></div>
+    <div class="floating-icon pencil"></div>
+    <div class="floating-icon pen"></div>
+    <div class="floating-icon paper"></div>
+
     <h1>Welcome to Gurugedara</h1>
 
     <button class="store-button" onclick="navigateToStore('gurugedara_s1')">Dambadeniya Shop</button>
-
     <button class="store-button" onclick="navigateToStore('gurugedara_s2')">Polgahawela Shop</button>
+
+    <footer>
+        Made with <span style="color: #e25555;">&hearts;</span> by Avcedits Team.
+    </footer>
 
     <script>
         function navigateToStore(storeName) {
