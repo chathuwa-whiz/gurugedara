@@ -114,6 +114,11 @@ if($xml){
 
           $answer = ControllerSales::ctrSalesDatesRange($initialDate, $finalDate);
 
+          // Debugging output
+          echo '<pre>';
+          print_r($answer);
+          echo '</pre>';      
+
           foreach ($answer as $key => $value) {
            
 
