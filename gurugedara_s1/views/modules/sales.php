@@ -145,7 +145,7 @@ if($xml){
 
                   <td>'.number_format($value["discountPercentage"],2).'%</td>
 
-                  <td>Rs. '.number_format($value["cashin"],2).'</td>
+                  <td>Rs. '.number_format($value["cashin"],1).'</td>
 
                   <td>Rs. '.number_format($value["balance"],2).'</td>
 
