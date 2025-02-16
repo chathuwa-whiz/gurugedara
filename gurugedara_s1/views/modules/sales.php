@@ -126,7 +126,12 @@ if($xml){
 
                   $customerAnswer = ControllerCustomers::ctrShowCustomers($itemCustomer, $valueCustomer);
 
-                  // echo '<td>'.$customerAnswer["name"].'</td>';
+                  // Debugging output
+                  echo '<pre>';
+                  print_r($customerAnswer);
+                  echo '</pre>';
+
+                  echo '<td>'.$customerAnswer["name"].'</td>';
 
                   $itemUser = "id";
                   $valueUser = $value["idSeller"];
