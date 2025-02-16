@@ -125,13 +125,9 @@ if($xml){
                   $valueCustomer = $value["idCustomer"];
 
                   $customerAnswer = ControllerCustomers::ctrShowCustomers($itemCustomer, $valueCustomer);
+                  $customerName = !empty($customerAnswer["name"]) ? $customerAnswer["name"] : 'customer';
 
-                  // Debugging output
-                  echo '<pre>';
-                  print_r($customerAnswer);
-                  echo '</pre>';
-
-                  echo '<td>'.$customerAnswer["name"].'</td>';
+                  echo '<td>'.$customerName.'</td>';
 
                   $itemUser = "id";
                   $valueUser = $value["idSeller"];
