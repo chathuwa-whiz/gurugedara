@@ -112,12 +112,7 @@ if($xml){
 
           }
 
-          $answer = ControllerSales::ctrSalesDatesRange($initialDate, $finalDate);
-
-          // Debugging output
-          echo '<pre>';
-          print_r($answer);
-          echo '</pre>';      
+          $answer = ControllerSales::ctrSalesDatesRange($initialDate, $finalDate);    
 
           foreach ($answer as $key => $value) {
            
@@ -131,7 +126,7 @@ if($xml){
 
                   $customerAnswer = ControllerCustomers::ctrShowCustomers($itemCustomer, $valueCustomer);
 
-                  echo '<td>'.$customerAnswer["name"].'</td>';
+                  // echo '<td>'.$customerAnswer["name"].'</td>';
 
                   $itemUser = "id";
                   $valueUser = $value["idSeller"];
